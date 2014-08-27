@@ -1,0 +1,119 @@
+body.photos.index {
+
+  .main {
+    padding: 0 48px;
+    clear: both;
+  }
+
+  .text {
+    float: left; 
+    text-align: left;
+    width: 54.6%;
+    margin-top: 96px;
+  }
+
+  h1 {
+    margin: 0 0 20px 0;
+  }
+
+  h2 {
+    margin: 0 0 0px 0;
+  }
+
+  p {
+    margin: 0 0 48px 0; 
+  }
+
+  .btn-verizon {
+    width: 410px;
+    font-size: 26px;
+    padding: 14px 0;
+  }
+
+  .image {
+    float: left;
+    text-align: right;
+    width: 45.3%;
+  }  
+
+}
+
+
+body.photos.new {
+  
+  .main {
+    padding: 40px 48px;
+    clear: both;
+    text-align: center;
+  }
+
+  form {
+    text-align: center;;
+  }
+
+  label {
+    font-family: 'VerizonApexMediumItalic', sans-serif;
+    font-size: 45px;
+    margin: 0 0 15px 0;
+  }
+
+  input {
+    display: block;
+    font-family: 'VerizonApexMediumItalic', sans-serif;
+    text-align: center;
+    margin: 0 auto 55px auto;
+    width: 550px;
+    font-size: 32.5px;
+    padding: 15px 0;
+    text-transform: uppercase;
+  }
+
+  .bottom-nav {
+    text-align: right;
+    padding: 15px 0 0 0;
+  }
+
+  .popover {
+    text-align: center;
+    font-family: 'VerizonApexMedium', sans-serif;
+  }
+}
+
+body.photos.capture {
+
+  .main {
+    text-align: center;
+  }
+
+  video {
+    border: solid 5px white;
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  }
+
+  #video-container {
+    margin-top: -50px;
+  }
+
+  #count-label {
+    color: #d62026;
+    font-family: 'VerizonApexBold', sans-serif;
+    font-size: 40px;
+  }
+
+  #video-frame {    
+    background-color: #a9a9a9;
+    width: 680px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  #video-controls {
+    background-color: #a9a9a9;
+    width: 680px;
+    margin: auto;
+    padding: 0 20px;
+    height: 300px;    
+  }
+}

@@ -15,3 +15,48 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-image: url("<%= asset_url 'bg.png' %>");
+  background-size: cover;
+}
+
+header {
+  padding: 0 48px; 
+}
+
+h1 {
+  font-family: 'VerizonApexBold', sans-serif;
+  font-size: 79px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2 {
+  font-family: 'VerizonApexBook', sans-serif;
+  font-style: italic;
+  font-size: 68px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+p {
+  font-family: 'VerizonApexMedium', sans-serif;
+  font-size: 21px;
+  text-transform: uppercase;  
+  margin: 0;
+}
+
+.btn-verizon, .btn-verizon:hover {
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  background-color: #d62026;
+}
+
+.btn-circle {
+  border-radius: 30px;
+  font-size: 30px;
+}
+.verizon-logo {
+  width: 125px;
+}

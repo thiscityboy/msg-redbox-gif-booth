@@ -19,5 +19,15 @@ module VznHarvestMoon
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Paperclip configuration options
+    config.paperclip_defaults = {
+      :storage => :s3, 
+      :bucket => 'vzn-harvest-moon', 
+      :s3_credentials => { 
+        :access_key_id => ENV['S3_KEY_ID'], 
+        :secret_access_key => ENV['S3_SECRET_KEY']
+      }
+    }      
   end
 end

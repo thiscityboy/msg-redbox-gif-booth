@@ -14,6 +14,8 @@ gem "paperclip"
 gem "unicorn-rails"
 gem "msg_toolbox"
 gem "font-awesome-rails"
+gem "aws-sdk"
+gem "rollbar"
 
 group :development, :test do
   gem "better_errors"

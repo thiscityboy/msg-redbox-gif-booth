@@ -1,0 +1,147 @@
+<!-- Video & Photo Capture --> 
+<div id="video-container">
+  <div id='video-frame'>
+    <video id="live" autoplay></video>
+  </div>
+  <div id='video-controls'>
+    <a id='btn-camera' class='btn btn-verizon btn-circle' href="#"><i class='fa fa-camera'></i></a>
+    <span id='count-label' />
+  </div>  
+</div>
+
+<div class='hidden'>
+  <canvas id='scratch'></canvas>
+</div>
+<script>
+var Photobooth = {
+  settings: {
+    countdownDelay: 3,
+    labelText: "IT'S GOOD",
+    canvas: {
+      font: 'bold 72pt impact',
+      fontColor: 'white',
+      fontBorder: 'black',
+      textAlign: 'center',
+      lineWidth: 6
+    }
+  },
+
+  init: function() {
+    Photobooth.container = document.getElementById("video-container");
+    Photobooth.frame     = document.getElementById("video-frame");
+    Photobooth.video     = document.getElementById("live");
+    Photobooth.canvas    = document.getElementById("scratch");
+    Photobooth.filmroll  = document.getElementById("filmroll");
+    Photobooth.button    = document.getElementById('btn-camera');
+    Photobooth.label     = document.getElementById('count-label');
+    Photobooth.bindUI();
+    Photobooth.checkWebRTC();
+  },
+
+  bindUI: function() {
+    Photobooth.button.addEventListener("click", Photobooth.startCountdown);
+  },
+
+  checkWebRTC: function() {
+    navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({video: true, audio: false}, Photobooth.initCamera, Photobooth.logError);
+    } else {
+      $(Photobooth.container).append("<h1><i class='fa fa-frown-o'></i><br/>getUserMedia not supported</h1>");
+    }
+  },
+
+  logError: function(err) {
+    console.log("The following error occured:");
+    console.log(err);
+  },
+
+  initCamera: function(mediaStream) {
+    Photobooth.video.src = window.URL.createObjectURL(mediaStream);
+    Photobooth.video.addEventListener("playing", Photobooth.enableControls);
+  },
+
+  enableControls: function() {
+    $(Photobooth.video).fadeIn(function() {
+      $("#controls").fadeIn();
+    });
+  },
+
+  startCountdown: function(e) {
+    e.preventDefault();
+    Photobooth.clearPreviousPhoto();
+    $(Photobooth.button).fadeOut(function() {
+      Photobooth.label.value = "Ready?";
+    });
+    Photobooth.currentCount = Photobooth.settings.countdownDelay;
+    Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 1000);
+  },
+
+  clearPreviousPhoto: function() {
+    if($(Photobooth.video).hasClass("hidden")) {
+      $(Photobooth.frame).children("img").fadeOut(function() {
+        $(Photobooth.video).removeClass("hidden");  
+        $(Photobooth.frame).children("img").remove();
+        $(Photobooth.frame).fadeIn();        
+      });
+    }
+  },
+
+  processCountdown: function() {
+    if(Photobooth.currentCount === 0) {
+      Photobooth.takePhoto();
+      Photobooth.stopCountdown();
+    } else {
+      $(Photobooth.label).text(Photobooth.currentCount);
+      Photobooth.currentCount -= 1;
+    }
+  },
+
+  stopCountdown: function() {
+    clearInterval(Photobooth.countdownInterval);
+    $(Photobooth.label).text('');
+    $(Photobooth.button).fadeIn();
+  },
+
+  flash: function() {
+    $(Photobooth.video).fadeOut('fast', function() {
+      $(Photobooth.video).fadeIn();
+    });
+  },
+
+  takePhoto: function() {
+    Photobooth.flash();
+
+    Photobooth.canvas.width  = Photobooth.video.clientWidth;
+    Photobooth.canvas.height = Photobooth.video.clientHeight;
+
+    var c = Photobooth.canvas.getContext("2d");
+
+    c.font        = Photobooth.settings.canvas.font;
+    c.fillStyle   = Photobooth.settings.canvas.fontColor;
+    c.strokeStyle = Photobooth.settings.canvas.fontBorder;
+    c.textAlign   = Photobooth.settings.canvas.textAlign;
+    c.lineWidth   = Photobooth.settings.canvas.lineWidth;
+    
+    c.drawImage(Photobooth.video, 0, 0, Photobooth.canvas.width, Photobooth.canvas.height);
+
+    Photobooth.processPhoto();
+  },
+
+  processPhoto: function() {
+    var img = document.createElement("img");
+    
+    img.src    = Photobooth.canvas.toDataURL("image/png");
+    img.width  = Photobooth.canvas.width;
+    img.height = Photobooth.canvas.height;
+    img.class  = "snapshot";
+
+    $(Photobooth.video).fadeOut(function() {
+      $(Photobooth.video).addClass("hidden");  
+      $(Photobooth.frame).append(img);
+      $(Photobooth.frame).fadeIn();
+    });
+  },
+};
+Photobooth.init();
+</script>

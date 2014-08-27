@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826210441) do
+ActiveRecord::Schema.define(version: 20140827203026) do
+
+  create_table "photos", force: true do |t|
+    t.string   "family_name"
+    t.string   "mdn"
+    t.text     "content_base64"
+    t.string   "content_type"
+    t.string   "content_filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content_file_name"
+    t.string   "content_content_type"
+    t.integer  "content_file_size"
+    t.datetime "content_updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
