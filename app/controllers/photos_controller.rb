@@ -14,12 +14,21 @@ class PhotosController < ApplicationController
     redirect_to new_photo_url, alert: e.message    
   end
 
+  def update
+    @photo = Photo.find(params[:id])
+    @photo.update!(photo_params)
+    redirect_to frame_photo_url(@photo)
+  rescue => e
+    redirect_to capture_photo_url(@photo), alert: e.message
+  end
+
   def capture
     @photo = Photo.find(params[:id])
   end
 
   def frame
     @photo = Photo.find(params[:id])
+    @frames = Frame.first(3).map { |f| f.content.url }
   end
 
   def show

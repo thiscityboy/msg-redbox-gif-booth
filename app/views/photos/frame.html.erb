@@ -1,2 +1,100 @@
-<h1>Photos#frame</h1>
-<p>Find me in app/views/photos/frame.html.erb</p>
+<div id='snapshot-row'>
+  <div id='snapshot-frame'>
+  </div>
+</div>
+
+<div id='frames-row' data-frames="<%= @frames %>">
+  <div id='back-frame'>
+    <%= link_to image_tag('back.png'), capture_photo_url(@photo) %>
+  </div>
+  <div id='frames-frame'>
+    &nbsp;
+  </div>
+  <div id="next-frame">
+    <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
+  </div>
+</div>
+<script>
+  var Framer = {
+
+    settings: {
+      height: 680,
+      width:  740,
+      contentType: "image/png"
+    },
+
+    init: function(photoUrl) {
+      Framer.photoUrl = photoUrl;
+      Framer.main     = document.getElementById('snapshot-frame');
+      Framer.row      = document.getElementById('frames-row'); 
+      Framer.select   = document.getElementById('frames-frame');
+      Framer.frames   = $(Framer.row).data('frames');
+      Framer.framePhoto();
+    },
+
+    framePhoto: function() {
+      Framer.photo = document.createElement("img");      
+      Framer.photo.height      = 480;
+      Framer.photo.width       = 640;
+      Framer.photo.crossOrigin = "anonymous";
+      Framer.photo.src         = Framer.photoUrl;
+      Framer.photo.addEventListener("load", Framer.applyPhoto);        
+    },
+
+    applyPhoto: function() {      
+      $(Framer.frames).each(function(i, frameUrl) { 
+        var canvas    = document.createElement("canvas");
+        canvas.width  = Framer.settings.width;
+        canvas.height = Framer.settings.height;
+
+        var context = canvas.getContext('2d');
+        context.drawImage(Framer.photo, 55, 155, 640, 480);
+
+        var currentFrame         = document.createElement("img");        
+        currentFrame.width       = Framer.settings.width;
+        currentFrame.height      = Framer.settings.height;
+        currentFrame.crossOrigin = "anonymous";
+        currentFrame.src         = frameUrl;
+        currentFrame.context     = context;
+        currentFrame.addEventListener("load", Framer.applyFrame);        
+      });
+    },
+
+    applyFrame: function() {
+      this.context.drawImage(this, 0, 0, 740, 680);
+
+      var framed    = document.createElement("img");
+      framed.crossOrigin = "anonymous";
+      framed.height      = this.context.canvas.height;
+      framed.width       = this.context.canvas.width;
+      framed.src         = this.context.canvas.toDataURL(Framer.settings.contentType);
+
+      $(Framer.select).append(framed);
+
+      $(framed).click(function() {
+        var hero         = document.createElement("img");
+        hero.height      = 680;
+        hero.width       = 740;
+        hero.src         = this.src;
+        $(Framer.main).html(hero);
+      });            
+
+      if($("#frames-frame").children("img").length >= 3) {
+        $("#frames-frame").children("img").fadeIn();
+        Framer.setHeroImage();
+      }      
+    },  
+
+    setHeroImage: function() {
+      console.log("Hero is:");
+      console.log($("#frames-frame").children("img")[0].src);
+      var hero    = document.createElement("img");
+      hero.height = 680;
+      hero.width  = 740;
+      hero.src    = $("#frames-frame").children("img")[0].src;
+      $(Framer.main).html(hero);
+      $(Framer.main).fadeIn();
+    },
+  };
+  Framer.init('<%= @photo.content.url %>');
+</script>
