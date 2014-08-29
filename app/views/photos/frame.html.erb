@@ -22,6 +22,7 @@
     <%= f.hidden_field :framed_filename %>
     <%= hidden_field_tag :redirect_to, photo_url(@photo) %>
   <% end %>
+  <p style="font-family: 'VerizonApexMediumItalic'">Hidden</p>
 </div>
 
 <script>
@@ -50,9 +51,7 @@
       Framer.framedName   = document.getElementById('photo_framed_filename');
       Framer.framedType   = document.getElementById('photo_framed_type');
       Framer.frames       = $(Framer.row).data('frames');
-      $.get("<%= asset_path 'fonts.css.erb' %>", function(){
-        Framer.framePhoto();
-      });      
+      Framer.framePhoto();
     },
 
     framePhoto: function() {
@@ -149,7 +148,8 @@
     },
   };
 
-  Framer.init('<%= @photo.content.url %>', '<%= @photo.family_name %>');
-  FrameForm.init();
-
+  $(function() {
+    Framer.init('<%= @photo.content.url %>', '<%= @photo.family_name %>');
+    FrameForm.init();
+  });
 </script>

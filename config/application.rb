@@ -28,8 +28,6 @@ module VznHarvestMoon
         :access_key_id => ENV['S3_KEY_ID'], 
         :secret_access_key => ENV['S3_SECRET_KEY']
       }
-    }  
-
-    Rails.application.config.assets.precompile += %w( fonts.css )    
+    }
   end
 end
