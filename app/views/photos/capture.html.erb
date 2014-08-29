@@ -1,12 +1,14 @@
 <div id='video-row'>
   <div id='video-frame'>
-    <video id="live" autoplay></video>
+    <!-- <div id='video-border' style=' background-color: black; border: solid 5px white; width: 650px; height: 490px; margin: auto; border-radius: 5px;'> -->
+      <video id="live" autoplay></video>
+    <!-- </div> -->
   </div>
 </div>
 
 <div id='controls-row'>
-  <div id='capture-frame'>
-    <a id='btn-camera' href="#"><%= image_tag 'camera.png' %></a>
+  <div id='capture-frame'>    
+    <a id='btn-camera' href="#"><%= image_tag 'camera.png' %></a>    
     <span id='count-label' />
   </div>
   <div id='next-frame'>
@@ -20,6 +22,7 @@
     <%= f.hidden_field :content_base64 %>
     <%= f.hidden_field :content_type %>
     <%= f.hidden_field :content_filename %>
+    <%= hidden_field_tag :redirect_to, frame_photo_url(@photo) %>
   <% end %>
 </div>
 
@@ -77,6 +80,7 @@ var Photobooth = {
     e.preventDefault();
     Photobooth.clearPreviousPhoto();
     $(Photobooth.button).fadeOut(function() {
+      $(Photobooth.label).show();
       $(Photobooth.label).text("Ready?");
       console.log("Ready!");
     });
@@ -106,6 +110,7 @@ var Photobooth = {
 
   stopCountdown: function() {
     clearInterval(Photobooth.countdownInterval);
+    $(Photobooth.label).hide();
     $(Photobooth.label).text('');
     $(Photobooth.button).fadeIn();
   },
@@ -119,8 +124,6 @@ var Photobooth = {
   takePhoto: function() {
     Photobooth.flash();
 
-    // Photobooth.canvas.width  = Photobooth.video.clientWidth;
-    // Photobooth.canvas.height = Photobooth.video.clientHeight;
     Photobooth.canvas.width  = 640;
     Photobooth.canvas.height = 480;
 

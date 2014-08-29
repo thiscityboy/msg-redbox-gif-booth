@@ -14,34 +14,57 @@
     <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
   </div>
 </div>
+
+<div class='hidden'>
+  <%= form_for(@photo) do |f| %>
+    <%= f.hidden_field :framed_base64 %>
+    <%= f.hidden_field :framed_type %>
+    <%= f.hidden_field :framed_filename %>
+    <%= hidden_field_tag :redirect_to, photo_url(@photo) %>
+  <% end %>
+</div>
+
 <script>
   var Framer = {
 
     settings: {
       height: 680,
       width:  740,
-      contentType: "image/png"
+      contentType: "image/png",
+      defaultFilename: "framed.png",
+      canvas: {
+        font: '33px VerizonApexMediumItalic, sans-serif',
+        fontColor: 'white',
+        textAlign: 'left',
+        lineWidth: 6
+      }      
     },
 
-    init: function(photoUrl) {
-      Framer.photoUrl = photoUrl;
-      Framer.main     = document.getElementById('snapshot-frame');
-      Framer.row      = document.getElementById('frames-row'); 
-      Framer.select   = document.getElementById('frames-frame');
-      Framer.frames   = $(Framer.row).data('frames');
-      Framer.framePhoto();
+    init: function(photoUrl, familyName) {
+      Framer.photoUrl     = photoUrl;
+      Framer.familyName   = familyName.toUpperCase();
+      Framer.main         = document.getElementById('snapshot-frame');
+      Framer.row          = document.getElementById('frames-row'); 
+      Framer.select       = document.getElementById('frames-frame');
+      Framer.framedBase64 = document.getElementById('photo_framed_base64');
+      Framer.framedName   = document.getElementById('photo_framed_filename');
+      Framer.framedType   = document.getElementById('photo_framed_type');
+      Framer.frames       = $(Framer.row).data('frames');
+      $.get("<%= asset_path 'fonts.css.erb' %>", function(){
+        Framer.framePhoto();
+      });      
     },
 
     framePhoto: function() {
-      Framer.photo = document.createElement("img");      
+      Framer.photo             = document.createElement("img");      
       Framer.photo.height      = 480;
       Framer.photo.width       = 640;
       Framer.photo.crossOrigin = "anonymous";
       Framer.photo.src         = Framer.photoUrl;
-      Framer.photo.addEventListener("load", Framer.applyPhoto);        
+      Framer.photo.addEventListener("load", Framer.createFrames);        
     },
 
-    applyPhoto: function() {      
+    createFrames: function() {      
       $(Framer.frames).each(function(i, frameUrl) { 
         var canvas    = document.createElement("canvas");
         canvas.width  = Framer.settings.width;
@@ -63,6 +86,14 @@
     applyFrame: function() {
       this.context.drawImage(this, 0, 0, 740, 680);
 
+      this.context.font        = Framer.settings.canvas.font;
+      this.context.fillStyle   = Framer.settings.canvas.fontColor;
+      this.context.textAlign   = Framer.settings.canvas.textAlign;
+      this.context.lineWidth   = Framer.settings.canvas.lineWidth;
+      
+      //this.context.strokeText(Framer.familyName, 20, this.context.canvas.height - 30);
+      this.context.fillText(Framer.familyName, 48, this.context.canvas.height - 28);
+
       var framed    = document.createElement("img");
       framed.crossOrigin = "anonymous";
       framed.height      = this.context.canvas.height;
@@ -77,24 +108,48 @@
         hero.width       = 740;
         hero.src         = this.src;
         $(Framer.main).html(hero);
+        Framer.saveToForm(this);
       });            
 
       if($("#frames-frame").children("img").length >= 3) {
         $("#frames-frame").children("img").fadeIn();
-        Framer.setHeroImage();
+        Framer.setInitialHeroImage();
       }      
     },  
 
-    setHeroImage: function() {
-      console.log("Hero is:");
-      console.log($("#frames-frame").children("img")[0].src);
+    setInitialHeroImage: function() {
       var hero    = document.createElement("img");
       hero.height = 680;
       hero.width  = 740;
       hero.src    = $("#frames-frame").children("img")[0].src;
       $(Framer.main).html(hero);
       $(Framer.main).fadeIn();
+      Framer.saveToForm($("#frames-frame").children("img")[0]);
+    },
+
+    saveToForm: function(img) {
+      Framer.framedBase64.value = img.src;
+      Framer.framedType.value   = Framer.settings.contentType;
+      Framer.framedType.value   = Framer.settings.defaultFilename;
     },
   };
-  Framer.init('<%= @photo.content.url %>');
+
+  var FrameForm = {
+    init: function() {
+      FrameForm.form   = document.getElementsByClassName('edit_photo')[0];
+      FrameForm.submit = document.getElementById('form-submit');
+      FrameForm.bindUI();
+    },
+    bindUI: function() {
+      $(FrameForm.submit).click(FrameForm.submitForm);
+    },
+    submitForm: function(e) {
+      e.preventDefault();
+      FrameForm.form.submit();
+    },
+  };
+
+  Framer.init('<%= @photo.content.url %>', '<%= @photo.family_name %>');
+  FrameForm.init();
+
 </script>

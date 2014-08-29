@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828203928) do
+ActiveRecord::Schema.define(version: 20140829151351) do
 
   create_table "frames", force: true do |t|
     t.datetime "created_at"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20140828203928) do
     t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
+    t.string   "framed_file_name"
+    t.string   "framed_content_type"
+    t.integer  "framed_file_size"
+    t.datetime "framed_updated_at"
+    t.text     "framed_base64"
+    t.string   "framed_filename"
+    t.string   "framed_type"
   end
 
   create_table "users", force: true do |t|
