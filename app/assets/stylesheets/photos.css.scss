@@ -231,8 +231,19 @@ body.photos.show {
   .text {
     float: left; 
     text-align: left;
-    width: 54.6%;
+    width: 52.6%;
     margin-top: 96px;
+  }
+
+  .image {
+    float: left;
+    text-align: right;
+    width: 47.3%;
+  } 
+
+  .image > img {
+    width: 514px;
+    height: auto;
   }
 
   h1 {
@@ -253,15 +264,6 @@ body.photos.show {
     padding: 14px 0;
   }
 
-  .image {
-    float: left;
-    text-align: right;
-    width: 45.3%;
-  }  
 
-  .image > img {
-    width: 514px;
-    height: auto;
-  }
 
 }
