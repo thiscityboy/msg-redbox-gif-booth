@@ -40,7 +40,8 @@ var Photobooth = {
     Photobooth.label         = document.getElementById('count-label');
     Photobooth.contentBase64 = document.getElementById('photo_content_base64');
     Photobooth.contentType   = document.getElementById('photo_content_type');
-    Photobooth.contentName   = document.getElementById('photo_content_filename');    
+    Photobooth.contentName   = document.getElementById('photo_content_filename');  
+    Photobooth.next          = document.getElementById("next-frame");  
     Photobooth.bindUI();
     Photobooth.checkWebRTC();
   },
@@ -140,6 +141,7 @@ var Photobooth = {
       $(Photobooth.video).addClass("hidden");  
       $(Photobooth.frame).append(img);
       $(Photobooth.frame).fadeIn('fast');
+      $(Photobooth.next).fadeIn('fast');
       $(Photobooth.video).fadeIn();
     });
   },
