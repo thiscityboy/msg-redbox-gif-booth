@@ -1,15 +1,13 @@
 <div id='video-row'>
   <div id='video-frame'>
-    <!-- <div id='video-border' style=' background-color: black; border: solid 5px white; width: 650px; height: 490px; margin: auto; border-radius: 5px;'> -->
-      <video id="live" autoplay></video>
-    <!-- </div> -->
+    <video id="live" autoplay></video>
   </div>
 </div>
 
 <div id='controls-row'>
   <div id='capture-frame'>    
     <a id='btn-camera' href="#"><%= image_tag 'camera.png' %></a>    
-    <span id='count-label' />
+    <div id='count-label'></div>
   </div>
   <div id='next-frame'>
     <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
@@ -71,15 +69,15 @@ var Photobooth = {
   },
 
   enableControls: function() {
-    $(Photobooth.video).fadeIn(function() {
-      $("#controls").fadeIn();
+    $(Photobooth.video).fadeIn('fast', function() {
+      $("#controls").fadeIn('fast');
     });
   },
 
   startCountdown: function(e) {
     e.preventDefault();
     Photobooth.clearPreviousPhoto();
-    $(Photobooth.button).fadeOut(function() {
+    $(Photobooth.button).fadeOut('fast', function() {
       $(Photobooth.label).show();
       $(Photobooth.label).text("Ready?");
       console.log("Ready!");
@@ -90,10 +88,10 @@ var Photobooth = {
 
   clearPreviousPhoto: function() {
     if($(Photobooth.video).hasClass("hidden")) {
-      $(Photobooth.frame).children("img").fadeOut(function() {
+      $(Photobooth.frame).children("img").fadeOut('fast', function() {
         $(Photobooth.video).removeClass("hidden");  
         $(Photobooth.frame).children("img").remove();
-        $(Photobooth.frame).fadeIn();        
+        $(Photobooth.frame).fadeIn('fast');        
       });
     }
   },
@@ -112,18 +110,15 @@ var Photobooth = {
     clearInterval(Photobooth.countdownInterval);
     $(Photobooth.label).hide();
     $(Photobooth.label).text('');
-    $(Photobooth.button).fadeIn();
+    $(Photobooth.button).fadeIn('fast');
   },
 
   flash: function() {
-    $(Photobooth.video).fadeOut('fast', function() {
-      $(Photobooth.video).fadeIn();
-    });
+    $(Photobooth.video).fadeOut();
+    console.log("FLASH?");
   },
 
   takePhoto: function() {
-    Photobooth.flash();
-
     Photobooth.canvas.width  = 640;
     Photobooth.canvas.height = 480;
 
@@ -141,10 +136,11 @@ var Photobooth = {
 
     Photobooth.saveToForm();
 
-    $(Photobooth.video).fadeOut(function() {
+    $(Photobooth.video).fadeOut('fast', function() {
       $(Photobooth.video).addClass("hidden");  
       $(Photobooth.frame).append(img);
-      $(Photobooth.frame).fadeIn();
+      $(Photobooth.frame).fadeIn('fast');
+      $(Photobooth.video).fadeIn();
     });
   },
 
@@ -166,10 +162,7 @@ var CaptureForm = {
   },
   submitForm: function(e) {
     e.preventDefault();
-    console.log("Hallo?");
-    //if($(CaptureForm.form).valid() === true) {
-      CaptureForm.form.submit();
-    //}
+    CaptureForm.form.submit();
   },
 };
 

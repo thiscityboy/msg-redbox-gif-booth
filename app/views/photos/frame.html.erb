@@ -1,5 +1,11 @@
+<div id='loading' class='loading'>
+  <i class='fa fa-refresh fa-spin'></i>
+  <br/>
+  <div>Processing photo</div>
+</div>  
+
 <div id='snapshot-row'>
-  <div id='snapshot-frame'>
+  <div id='snapshot-frame'>        
   </div>
 </div>
 
@@ -50,6 +56,7 @@
       Framer.framedBase64 = document.getElementById('photo_framed_base64');
       Framer.framedName   = document.getElementById('photo_framed_filename');
       Framer.framedType   = document.getElementById('photo_framed_type');
+      Framer.loading      = document.getElementById('loading');
       Framer.frames       = $(Framer.row).data('frames');
       Framer.framePhoto();
     },
@@ -90,47 +97,52 @@
       this.context.textAlign   = Framer.settings.canvas.textAlign;
       this.context.lineWidth   = Framer.settings.canvas.lineWidth;
       
-      //this.context.strokeText(Framer.familyName, 20, this.context.canvas.height - 30);
       this.context.fillText(Framer.familyName, 48, this.context.canvas.height - 28);
 
-      var framed    = document.createElement("img");
-      framed.crossOrigin = "anonymous";
-      framed.height      = this.context.canvas.height;
-      framed.width       = this.context.canvas.width;
-      framed.src         = this.context.canvas.toDataURL(Framer.settings.contentType);
+      var thumbnail         = document.createElement("img");
+      thumbnail.crossOrigin = "anonymous";
+      thumbnail.height      = this.context.canvas.height;
+      thumbnail.width       = this.context.canvas.width;
+      thumbnail.src         = this.context.canvas.toDataURL(Framer.settings.contentType);
 
-      $(Framer.select).append(framed);
+      $(Framer.select).append(thumbnail);
 
-      $(framed).click(function() {
-        var hero         = document.createElement("img");
-        hero.height      = 680;
-        hero.width       = 740;
-        hero.src         = this.src;
-        $(Framer.main).html(hero);
-        Framer.saveToForm(this);
-      });            
+      $(thumbnail).click(Framer.selectThumbnail);            
 
-      if($("#frames-frame").children("img").length >= 3) {
-        $("#frames-frame").children("img").fadeIn();
-        Framer.setInitialHeroImage();
+      if($(Framer.select).children("img").length >= 3) {
+        $(Framer.select).children("img").fadeIn('fast');
+        $(Framer.loading).fadeOut('fast', function() {
+          Framer.selectThumbnail({}, $(Framer.select).children("img")[0]);
+        });        
       }      
     },  
-
-    setInitialHeroImage: function() {
-      var hero    = document.createElement("img");
-      hero.height = 680;
-      hero.width  = 740;
-      hero.src    = $("#frames-frame").children("img")[0].src;
-      $(Framer.main).html(hero);
-      $(Framer.main).fadeIn();
-      Framer.saveToForm($("#frames-frame").children("img")[0]);
-    },
 
     saveToForm: function(img) {
       Framer.framedBase64.value = img.src;
       Framer.framedType.value   = Framer.settings.contentType;
       Framer.framedType.value   = Framer.settings.defaultFilename;
     },
+
+    selectThumbnail: function(event, target) {
+      var selected = target;
+      if(typeof selected === "undefined") {
+        selected = this;
+      }
+      var hero         = document.createElement("img");
+      hero.height      = 680;
+      hero.width       = 740;
+      hero.src         = selected.src;
+      $(Framer.main).fadeOut('fast', function() {
+        $(Framer.main).html(hero);
+        $(Framer.main).fadeIn('fast');
+      });
+      $(Framer.select).find("img").each(function() {
+        $(this).removeClass('selected');
+      });
+      $(selected).addClass("selected");
+      Framer.saveToForm(selected);
+    },
+
   };
 
   var FrameForm = {
