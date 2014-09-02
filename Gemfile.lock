@@ -105,6 +105,7 @@ GEM
     multi_json (1.10.1)
     multipart-post (2.0.0)
     nested_form (0.3.2)
+    newrelic_rpm (3.9.0.229)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
@@ -229,6 +230,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   msg_toolbox
+  newrelic_rpm
   paperclip
   pg
   rails (= 4.1.1)

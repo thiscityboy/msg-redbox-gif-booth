@@ -16,6 +16,7 @@ gem "msg_toolbox"
 gem "font-awesome-rails"
 gem "aws-sdk"
 gem "rollbar"
+gem "newrelic_rpm"
 
 group :development, :test do
   gem "better_errors"
