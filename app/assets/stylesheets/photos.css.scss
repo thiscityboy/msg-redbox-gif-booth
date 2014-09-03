@@ -152,10 +152,6 @@ body.photos.capture {
 
 body.photos.frame {
 
-  canvas {
-    border: solid 1px red;
-  }
-
   #snapshot-row {
     min-height: 480px;
     margin: -40px 0 0 0;
@@ -200,7 +196,7 @@ body.photos.frame {
   }
 
   #frames-frame > img.selected {
-    border: solid 4px red;
+    border: solid 4px #d62026;
     border-radius: 4px;
     // box-sizing: content-box;
   }
@@ -268,5 +264,37 @@ body.photos.show {
     width: 410px;
     font-size: 26px;
     padding: 14px 0;
+  }
+}
+
+body.photos.view {
+
+  header {
+    padding: 0 1em;
+    margin-bottom: 2em;
+  }
+
+  .verizon-logo {
+    width: 25%;
+  }
+
+  .image {
+    text-align: center;
+    padding: 1em;
+  }
+
+  .image > img {
+    width: 100%;
+    height: auto;
+  }
+
+  .social {
+    text-align: center;
+    font-size: 3em;
+  }
+
+  .social > a {
+    color: #d62026;
+    margin: 0 0.125em;
   }
 }

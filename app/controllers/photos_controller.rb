@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
     redirect_to capture_photo_url(photo)
   rescue => e
     Rollbar.report_exception(e)
-    redirect_to new_photo_url, alert: e.message    
+    redirect_to new_photo_url, alert: e.message
   end
 
   def update
@@ -42,6 +42,10 @@ class PhotosController < ApplicationController
     redirect_to photos_url, notice: "<strong>Check your phone.</strong> Your Harvest Moon photo is on its way!"
   rescue => e
     redirect_to photos_url, alert: e.message
+  end
+
+  def view
+    @photo = Photo.find(params[:id])
   end
 
   private
