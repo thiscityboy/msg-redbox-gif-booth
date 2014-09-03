@@ -2,7 +2,7 @@ var Photobooth = {
   settings: {
     countdownDelay: 3,
     contentType: "image/png",
-    defaultFileName: "snapshot.png",    
+    defaultFileName: "snapshot.png",
   },
 
   init: function() {
@@ -13,8 +13,8 @@ var Photobooth = {
     Photobooth.label         = document.getElementById('count-label');
     Photobooth.contentBase64 = document.getElementById('photo_content_base64');
     Photobooth.contentType   = document.getElementById('photo_content_type');
-    Photobooth.contentName   = document.getElementById('photo_content_filename');  
-    Photobooth.next          = document.getElementById("next-frame");  
+    Photobooth.contentName   = document.getElementById('photo_content_filename');
+    Photobooth.next          = document.getElementById("next-frame");
     Photobooth.bindUI();
     Photobooth.checkWebRTC();
   },
@@ -63,9 +63,9 @@ var Photobooth = {
   clearPreviousPhoto: function() {
     if($(Photobooth.video).hasClass("hidden")) {
       $(Photobooth.frame).children("img").fadeOut('fast', function() {
-        $(Photobooth.video).removeClass("hidden");  
+        $(Photobooth.video).removeClass("hidden");
         $(Photobooth.frame).children("img").remove();
-        $(Photobooth.frame).fadeIn('fast');        
+        $(Photobooth.frame).fadeIn('fast');
       });
     }
   },
@@ -111,7 +111,7 @@ var Photobooth = {
     Photobooth.saveToForm();
 
     $(Photobooth.video).fadeOut('fast', function() {
-      $(Photobooth.video).addClass("hidden");  
+      $(Photobooth.video).addClass("hidden");
       $(Photobooth.frame).append(img);
       $(Photobooth.frame).fadeIn('fast');
       $(Photobooth.next).fadeIn('fast');
@@ -123,5 +123,5 @@ var Photobooth = {
     Photobooth.contentBase64.value = Photobooth.canvas.toDataURL(Photobooth.settings.contentType);
     Photobooth.contentType.value   = Photobooth.settings.contentType;
     Photobooth.contentName.value   = Photobooth.settings.defaultFileName;
-  },  
+  },
 };

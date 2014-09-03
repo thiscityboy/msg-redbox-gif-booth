@@ -1,5 +1,4 @@
 var Framer = {
-
   settings: {
     height: 680,
     width:  740,
@@ -10,14 +9,14 @@ var Framer = {
       fontColor: 'white',
       textAlign: 'left',
       lineWidth: 6
-    }      
+    }
   },
 
   init: function(photoUrl, familyName) {
     Framer.photoUrl     = photoUrl;
     Framer.familyName   = familyName.toUpperCase();
     Framer.main         = document.getElementById('snapshot-frame');
-    Framer.row          = document.getElementById('frames-row'); 
+    Framer.row          = document.getElementById('frames-row');
     Framer.select       = document.getElementById('frames-frame');
     Framer.framedBase64 = document.getElementById('photo_framed_base64');
     Framer.framedName   = document.getElementById('photo_framed_filename');
@@ -28,16 +27,16 @@ var Framer = {
   },
 
   framePhoto: function() {
-    Framer.photo             = document.createElement("img");      
+    Framer.photo             = document.createElement("img");
     Framer.photo.height      = 480;
     Framer.photo.width       = 640;
     Framer.photo.crossOrigin = "anonymous";
     Framer.photo.src         = Framer.photoUrl;
-    Framer.photo.addEventListener("load", Framer.createFrames);        
+    Framer.photo.addEventListener("load", Framer.createFrames);
   },
 
-  createFrames: function() {      
-    $(Framer.frames).each(function(i, frameUrl) { 
+  createFrames: function() {
+    $(Framer.frames).each(function(i, frameUrl) {
       var canvas    = document.createElement("canvas");
       canvas.width  = Framer.settings.width;
       canvas.height = Framer.settings.height;
@@ -45,13 +44,13 @@ var Framer = {
       var context = canvas.getContext('2d');
       context.drawImage(Framer.photo, 55, 155, 640, 480);
 
-      var currentFrame         = document.createElement("img");        
+      var currentFrame         = document.createElement("img");
       currentFrame.width       = Framer.settings.width;
       currentFrame.height      = Framer.settings.height;
       currentFrame.crossOrigin = "anonymous";
       currentFrame.src         = frameUrl;
       currentFrame.context     = context;
-      currentFrame.addEventListener("load", Framer.applyFrame);        
+      currentFrame.addEventListener("load", Framer.applyFrame);
     });
   },
 
@@ -62,7 +61,7 @@ var Framer = {
     this.context.fillStyle   = Framer.settings.canvas.fontColor;
     this.context.textAlign   = Framer.settings.canvas.textAlign;
     this.context.lineWidth   = Framer.settings.canvas.lineWidth;
-    
+
     this.context.fillText(Framer.familyName, 48, this.context.canvas.height - 28);
 
     var thumbnail         = document.createElement("img");
@@ -73,15 +72,15 @@ var Framer = {
 
     $(Framer.select).append(thumbnail);
 
-    $(thumbnail).click(Framer.selectThumbnail);            
+    $(thumbnail).click(Framer.selectThumbnail);
 
     if($(Framer.select).children("img").length >= 3) {
       $(Framer.select).children("img").fadeIn('fast');
       $(Framer.loading).fadeOut('fast', function() {
         Framer.selectThumbnail({}, $(Framer.select).children("img")[0]);
-      });        
-    }      
-  },  
+      });
+    }
+  },
 
   saveToForm: function(img) {
     Framer.framedBase64.value = img.src;
