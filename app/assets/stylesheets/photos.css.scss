@@ -6,7 +6,7 @@ body.photos.index {
   }
 
   .text {
-    float: left; 
+    float: left;
     text-align: left;
     width: 52.6%;
     margin-top: 96px;
@@ -16,7 +16,7 @@ body.photos.index {
     float: left;
     text-align: right;
     width: 47.3%;
-  }  
+  }
 
   .image > img {
     width: 514px;
@@ -32,7 +32,7 @@ body.photos.index {
   }
 
   p {
-    margin: 0 0 48px 0; 
+    margin: 0 0 48px 0;
   }
 
   .btn-verizon {
@@ -48,12 +48,11 @@ body.photos.index {
       text-decoration: underline;
     }
   }
-
 }
 
 
 body.photos.new {
-  
+
   .main {
     padding: 58px 48px;
     clear: both;
@@ -136,7 +135,7 @@ body.photos.capture {
     bottom: 0;
   }
 
-  #next-frame { 
+  #next-frame {
     display: none;
     float: right;
     padding: 0 48px 0 0;
@@ -183,7 +182,7 @@ body.photos.frame {
     width: 21.875%;
     height: auto;
     height: 180px;
-    padding: 88px 0 0 30px; 
+    padding: 88px 0 0 30px;
   }
 
   #frames-frame {
@@ -216,17 +215,16 @@ body.photos.frame {
   }
 
   .loading {
-    margin-top: 100px;    
+    margin-top: 100px;
     text-align: center;
     i { font-size: 150px; }
-    div { text-transform: uppercase; 
+    div { text-transform: uppercase;
       font-family: 'VerizonApexMedium', sans-serif;
       font-size: 21px;
-      text-transform: uppercase;  
+      text-transform: uppercase;
       padding-top: 10px;
     }
   }
-
 }
 
 body.photos.show {
@@ -237,7 +235,7 @@ body.photos.show {
   }
 
   .text {
-    float: left; 
+    float: left;
     text-align: left;
     width: 52.6%;
     margin-top: 96px;
@@ -247,7 +245,7 @@ body.photos.show {
     float: left;
     text-align: right;
     width: 47.3%;
-  } 
+  }
 
   .image > img {
     width: 514px;
@@ -263,7 +261,7 @@ body.photos.show {
   }
 
   p {
-    margin: 0 0 38px 0; 
+    margin: 0 0 38px 0;
   }
 
   .btn-verizon {
@@ -271,7 +269,4 @@ body.photos.show {
     font-size: 26px;
     padding: 14px 0;
   }
-
-
-
 }
