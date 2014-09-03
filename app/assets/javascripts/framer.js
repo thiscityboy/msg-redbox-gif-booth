@@ -65,21 +65,26 @@ var Framer = {
     this.context.fillText(Framer.familyName, 48, this.context.canvas.height - 28);
 
     var thumbnail         = document.createElement("img");
-    thumbnail.crossOrigin = "anonymous";
     thumbnail.height      = this.context.canvas.height;
     thumbnail.width       = this.context.canvas.width;
     thumbnail.src         = this.context.canvas.toDataURL(Framer.settings.contentType);
+    thumbnail.addEventListener("load", Framer.addToSelection);
+  },
 
-    $(Framer.select).append(thumbnail);
-
-    $(thumbnail).click(Framer.selectThumbnail);
+  addToSelection: function() {
+    $(Framer.select).append(this);
+    $(this).click(Framer.selectThumbnail);
 
     if($(Framer.select).children("img").length >= 3) {
-      $(Framer.select).children("img").fadeIn('fast');
-      $(Framer.loading).fadeOut('fast', function() {
-        Framer.selectThumbnail({}, $(Framer.select).children("img")[0]);
-      });
+      Framer.showAllPictures();
     }
+  },
+
+  showAllPictures: function() {
+    $(Framer.select).children("img").fadeIn('fast');
+    $(Framer.loading).fadeOut('fast', function() {
+      Framer.selectThumbnail({}, $(Framer.select).children("img")[0]);
+    });
   },
 
   saveToForm: function(img) {

@@ -28,7 +28,9 @@ var Photobooth = {
     if (navigator.getUserMedia) {
       navigator.getUserMedia({video: true, audio: false}, Photobooth.initCamera, Photobooth.logError);
     } else {
-      $(Photobooth.frame).append("<h1><i class='fa fa-frown-o'></i><br/>getUserMedia not supported</h1>");
+      $(Photobooth.video).hide();
+      $(Photobooth.button).hide();
+      $(Photobooth.frame).append("<h1><i class='fa fa-frown-o'></i><br/>Camera Access Not Supported</h1>");
     }
   },
 
