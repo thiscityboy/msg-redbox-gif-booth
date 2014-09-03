@@ -20,6 +20,26 @@ config.current_user_method(&:current_user)
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.model Photo do
+    list do
+      field :mdn
+      field :family_name
+      field :created_at
+    end
+    edit do
+      field :mdn
+      field :family_name
+      field :content
+      field :framed
+    end
+    show do
+      field :mdn
+      field :family_name
+      field :content
+      field :framed
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
