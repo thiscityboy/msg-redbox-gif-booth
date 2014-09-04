@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
     @photo.update!(photo_params)
     redirect_to params[:redirect_to]
   rescue => e
+    Rollbar.report_exception(e)
     redirect_to capture_photo_url(@photo), alert: e.message
   end
 
@@ -41,6 +42,7 @@ class PhotosController < ApplicationController
     MsgToolbox.send_message @photo.mdn, "Click here to view your Harvest Moon photo #{picture_url}", ENV['SHORT_CODE']
     redirect_to photos_url, notice: "<strong>Check your phone.</strong> Your Harvest Moon photo is on its way!"
   rescue => e
+    Rollbar.report_exception(e)
     redirect_to photos_url, alert: e.message
   end
 
