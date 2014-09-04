@@ -3,7 +3,7 @@
   <h1>You're Done</h1>
   <p>Send this photo to your phone now! From there, you can also share the photo with your friends and family via Facebook and Twitter.</p>
   <%= form_tag(sms_photo_url(@photo)) do %>
-    <%= submit_tag "Send to phone", class: 'btn btn-verizon' %>
+    <%= submit_tag "Send to phone", class: 'btn btn-verizon', id: "btn-send-to-phone" %>
   <% end %>
 </div>
 <div class='image'>
