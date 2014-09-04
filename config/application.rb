@@ -22,10 +22,11 @@ module VznHarvestMoon
 
     # Paperclip configuration options
     config.paperclip_defaults = {
-      :storage => :s3, 
-      :bucket => 'vzn-harvest-moon', 
-      :s3_credentials => { 
-        :access_key_id => ENV['S3_KEY_ID'], 
+      :storage => :s3,
+      :s3_protocol => :https,
+      :bucket => 'vzn-harvest-moon',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY_ID'],
         :secret_access_key => ENV['S3_SECRET_KEY']
       }
     }
