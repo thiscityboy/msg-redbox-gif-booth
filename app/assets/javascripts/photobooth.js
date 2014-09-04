@@ -56,7 +56,6 @@ var Photobooth = {
     $(Photobooth.button).fadeOut('fast', function() {
       $(Photobooth.label).show();
       $(Photobooth.label).text("Ready?");
-      console.log("Ready!");
     });
     Photobooth.currentCount = Photobooth.settings.countdownDelay;
     Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 1000);
@@ -87,11 +86,6 @@ var Photobooth = {
     $(Photobooth.label).hide();
     $(Photobooth.label).text('');
     $(Photobooth.button).fadeIn('fast');
-  },
-
-  flash: function() {
-    $(Photobooth.video).fadeOut();
-    console.log("FLASH?");
   },
 
   takePhoto: function() {
