@@ -97,7 +97,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.4.0)
-    msg_toolbox (0.0.15)
+    msg_toolbox (0.0.17)
       faraday (~> 0.8)
       json (~> 1.8)
       nokogiri (>= 1.5)
