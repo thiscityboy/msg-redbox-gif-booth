@@ -1,11 +1,28 @@
 class PhotosController < ApplicationController
-  before_action :get_stop, only: [:new, :index, :create]
 
   def index
+    @stop = Stop.find(params[:stop_id])
   end
 
   def new
     @photo = Photo.new
+    @stop  = Stop.find(params[:stop_id])
+  end
+
+  def capture
+    @photo = Photo.find(params[:id])
+    @stop = @photo.stop
+  end
+
+  def frame
+    @photo = Photo.find(params[:id])
+    @stop = @photo.stop
+    @frames = Frame.first(3).map { |f| f.content.url }
+  end
+
+  def show
+    @photo = Photo.find(params[:id])
+    @stop = @photo.stop
   end
 
   def create
@@ -25,19 +42,6 @@ class PhotosController < ApplicationController
     redirect_to capture_photo_url(@photo), alert: e.message
   end
 
-  def capture
-    @photo = Photo.find(params[:id])
-  end
-
-  def frame
-    @photo = Photo.find(params[:id])
-    @frames = Frame.first(3).map { |f| f.content.url }
-  end
-
-  def show
-    @photo = Photo.find(params[:id])
-  end
-
   def sms
     @photo = Photo.find(params[:id])
     picture_url = MsgToolbox.shorten_url @photo.framed.url, ENV["CAMPAIGN_ID"].to_i, @photo.mdn, ENV["ACCOUNT_ID"].to_i, ENV["SHORT_CODE"], nil
@@ -50,6 +54,7 @@ class PhotosController < ApplicationController
 
   def view
     @photo = Photo.find(params[:id])
+    @stop = @photo.stop
   end
 
   private
@@ -58,7 +63,4 @@ class PhotosController < ApplicationController
       params.require(:photo).permit(:content_base64, :content_type, :content_filename, :mdn, :family_name, :framed_base64, :framed_type, :framed_filename, :stop_id)
     end
 
-    def get_stop
-      @stop = Stop.find(params[:stop_id])
-    end
 end
