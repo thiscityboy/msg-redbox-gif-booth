@@ -42,10 +42,10 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     picture_url = MsgToolbox.shorten_url @photo.framed.url, ENV["CAMPAIGN_ID"].to_i, @photo.mdn, ENV["ACCOUNT_ID"].to_i, ENV["SHORT_CODE"], nil
     MsgToolbox.send_message @photo.mdn, "Click here to view your Harvest Moon photo #{picture_url}", ENV['SHORT_CODE']
-    redirect_to photos_url, notice: "<strong>Check your phone.</strong> Your Harvest Moon photo is on its way!"
+    redirect_to stop_photos_url(@photo.stop), notice: "<strong>Check your phone.</strong> Your Harvest Moon photo is on its way!"
   rescue => e
     Rollbar.report_exception(e)
-    redirect_to photos_url, alert: e.message
+    redirect_to stop_photos_url(@photo.stop), alert: e.message
   end
 
   def view
