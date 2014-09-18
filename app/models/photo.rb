@@ -1,6 +1,8 @@
 class Photo < ActiveRecord::Base
   before_save :decode_base64_image
 
+  belongs_to :stop
+
   has_attached_file :content, :styles => { :medium => "640x480" }
   has_attached_file :framed, :styles => { :medium => "740x680" }
 

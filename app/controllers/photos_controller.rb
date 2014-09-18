@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  before_action :get_stop, only: [:new, :index, :create]
+
   def index
   end
 
@@ -11,7 +13,7 @@ class PhotosController < ApplicationController
     redirect_to capture_photo_url(photo)
   rescue => e
     Rollbar.report_exception(e)
-    redirect_to new_photo_url, alert: e.message
+    redirect_to new_stop_photo_url, alert: e.message
   end
 
   def update
@@ -53,6 +55,10 @@ class PhotosController < ApplicationController
   private
 
     def photo_params
-      params.require(:photo).permit(:content_base64, :content_type, :content_filename, :mdn, :family_name, :framed_base64, :framed_type, :framed_filename,)
+      params.require(:photo).permit(:content_base64, :content_type, :content_filename, :mdn, :family_name, :framed_base64, :framed_type, :framed_filename, :stop_id)
+    end
+
+    def get_stop
+      @stop = Stop.find(params[:stop_id])
     end
 end

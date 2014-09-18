@@ -1,7 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Seeding Harvest Moon Events"
+Stop.find_or_create_by(name: "Seattle Night Market (SEA)", date: Date.parse("September 13, 2014"))
+Stop.find_or_create_by(name: "Silicon Valley Fall Festival (CA)", date: Date.parse("September 13, 2014"))
+Stop.find_or_create_by(name: "LA Korean Festival (CA)", date: Date.parse("September 18, 2014"))
+Stop.find_or_create_by(name: "LA Korean Festival (CA)", date: Date.parse("September 19, 2014"))
+Stop.find_or_create_by(name: "LA Korean Festival (CA)", date: Date.parse("September 20, 2014"))
+Stop.find_or_create_by(name: "LA Korean Festival (CA)", date: Date.parse("September 21, 2014"))
+Stop.find_or_create_by(name: "Korus Festival (VA)", date: Date.parse("September 19, 2014"))
+Stop.find_or_create_by(name: "Korus Festival (VA)", date: Date.parse("September 20, 2014"))
+Stop.find_or_create_by(name: "Korus Festival (VA)", date: Date.parse("September 21, 2014"))
+Stop.find_or_create_by(name: "12th Autumn Moon Cultural Festival (NY)", date: Date.parse("September 21, 2014"))
+

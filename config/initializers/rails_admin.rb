@@ -24,19 +24,37 @@ config.current_user_method(&:current_user)
     list do
       field :mdn
       field :family_name
+      field :stop
       field :created_at
     end
     edit do
       field :mdn
       field :family_name
+      field :stop
       field :content
       field :framed
     end
     show do
       field :mdn
       field :family_name
+      field :stop
       field :content
       field :framed
+    end
+  end
+
+  config.model Stop do
+    list do
+      field :name
+      field :date
+    end
+    edit do
+      field :name
+      field :date
+    end
+    show do
+      field :name
+      field :date
     end
   end
 

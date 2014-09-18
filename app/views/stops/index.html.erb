@@ -1,0 +1,30 @@
+<%= form_for @stop do |f| %>
+  <div class='form-group'>
+    <%= f.label :stop, "Select Location" %>
+    <%= f.collection_select :id, @stops, :id, :long_name, {}, {class: 'form-control', data: { stops_url: stops_url }} %>
+  </div>
+<% end %>
+  <div class='form-group'>
+    <button id='btn-location-select' href='#' class='btn btn-verizon'>SELECT</button>
+  </div>
+<script>
+  var LocationSelect = {
+    init: function() {
+      LocationSelect.$selectButton = $("#btn-location-select");
+      LocationSelect.$selectList = $("#stop_id");
+      LocationSelect.bindUI();
+    },
+
+    bindUI: function() {
+      LocationSelect.$selectButton.click(LocationSelect.redirect);
+    },
+
+    redirect: function() {
+      var stop_id  = LocationSelect.$selectList.val();
+      var stop_url = LocationSelect.$selectList.data("stops-url");
+      var full_url = stop_url + "/" + stop_id + "/photos";
+      window.location = full_url;
+    },
+  };
+  LocationSelect.init();
+</script>
