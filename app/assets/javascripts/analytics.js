@@ -8,8 +8,8 @@ var Analytics = {
     Analytics.stopName = stopName;
 
     ga('create', 'UA-52759511-11', 'auto');
-    ga('send', 'pageview');
     ga('set', 'dimension1', Analytics.stopName);
+    ga('send', 'pageview');
 
     Analytics.bindUI();
   },
