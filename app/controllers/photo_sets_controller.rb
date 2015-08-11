@@ -9,7 +9,7 @@ class PhotoSetsController < ApplicationController
 
   def edit
     @photo_set = PhotoSet.find(params[:id])
-    @frames = Frame.first(3).map { |f| f.content.url }
+    @frames = Frame.find_each.map { |f| f.content.url }
   end
 
 
@@ -24,6 +24,8 @@ class PhotoSetsController < ApplicationController
   end
 
   def update
+    @photo_set = PhotoSet.find(params[:id])
+    @photo_set.update(photo_set_params)
   end
 
   def send_photo
@@ -35,7 +37,7 @@ class PhotoSetsController < ApplicationController
   private
 
     def photo_set_params
-      params.require(:photo_set).permit(:photo1_base64, :photo1_filename, :photo2_base64, :photo2_filename, :photo3_base64, :photo3_filename, :photo4_base64, :photo4_filename, :mdn)
+      params.require(:photo_set).permit(:photo1_base64, :photo2_base64, :photo3_base64, :photo4_base64, :photo5_base64, :photo6_base64, :photo7_base64, :photo8_base64, :framed_base64, :mdn)
     end
 
 end
