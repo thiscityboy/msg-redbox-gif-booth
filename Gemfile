@@ -1,7 +1,7 @@
 # msg gemfile
 source 'https://repo.fury.io/svdEKiyaqdZ1xhagHajp/me/'
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem "rails", "4.2.1"
 gem "sass-rails", "~> 4.0.0"
@@ -14,9 +14,8 @@ gem "paperclip"
 gem "unicorn-rails"
 gem "msg_toolbox"
 gem "font-awesome-rails"
-gem "aws-sdk"
+gem 'aws-sdk', '< 2.0'
 gem "rollbar"
-gem "newrelic_rpm"
 gem "rmagick"
 
 group :development, :test do
