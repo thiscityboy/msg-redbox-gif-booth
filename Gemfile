@@ -1,7 +1,7 @@
 # msg gemfile
 source 'https://repo.fury.io/svdEKiyaqdZ1xhagHajp/me/'
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.2.0'
 
 gem "rails", "4.1.1"
 gem "sass-rails", "~> 4.0.0"
