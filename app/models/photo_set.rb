@@ -1,0 +1,137 @@
+class PhotoSet < ActiveRecord::Base
+
+  before_save :decode_base64_image
+
+  has_attached_file :photo1, :styles => { :medium => "640x480" }
+  has_attached_file :photo2, :styles => { :medium => "640x480" }
+  has_attached_file :photo3, :styles => { :medium => "640x480" }
+  has_attached_file :photo4, :styles => { :medium => "640x480" }
+  has_attached_file :photo5, :styles => { :medium => "640x480" }
+  has_attached_file :photo6, :styles => { :medium => "640x480" }
+  has_attached_file :photo7, :styles => { :medium => "640x480" }
+  has_attached_file :photo8, :styles => { :medium => "640x480" }
+  has_attached_file :gif,    :styles => { :medium => "640x480" }
+
+
+  validates_attachment_content_type :photo1, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo2, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo3, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo4, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo5, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo6, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo7, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo8, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :gif,    :content_type => /\Aimage\/.*\Z/
+
+  def to_image_list
+    image_urls = []
+    image_urls << photo1.url.gsub("https", "http") if photo1.present?
+    image_urls << photo2.url.gsub("https", "http") if photo2.present?
+    image_urls << photo3.url.gsub("https", "http") if photo3.present?
+    image_urls << photo4.url.gsub("https", "http") if photo4.present?
+    image_urls << photo5.url.gsub("https", "http") if photo5.present?
+    image_urls << photo6.url.gsub("https", "http") if photo6.present?
+    image_urls << photo7.url.gsub("https", "http") if photo7.present?
+    image_urls << photo8.url.gsub("https", "http") if photo8.present?
+    Magick::ImageList.new(*image_urls)
+  end
+
+  def save_gif!
+    gif_id = "animated-#{self.id}.gif"
+    self.to_image_list.write(gif_id)
+    self.gif = open(gif_id)
+    self.save
+  end
+
+  private
+
+    def decode_base64_image
+      if photo1_base64.present?
+        data = StringIO.new(Base64.decode64(photo1_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot1.png"
+        self.photo1 = data
+        self.photo1_base64 = nil
+      end
+
+      if photo2_base64.present?
+        data = StringIO.new(Base64.decode64(photo2_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot2.png"
+        self.photo2 = data
+        self.photo2_base64 = nil
+      end
+
+      if photo3_base64.present?
+        data = StringIO.new(Base64.decode64(photo3_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot3.png"
+        self.photo3 = data
+        self.photo3_base64 = nil
+      end
+
+      if photo4_base64.present?
+        data = StringIO.new(Base64.decode64(photo4_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot4.png"
+        self.photo4 = data
+        self.photo4_base64 = nil
+      end
+
+      if photo5_base64.present?
+        data = StringIO.new(Base64.decode64(photo5_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot4.png"
+        self.photo5 = data
+        self.photo5_base64 = nil
+      end
+
+      if photo6_base64.present?
+        data = StringIO.new(Base64.decode64(photo6_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot4.png"
+        self.photo6 = data
+        self.photo6_base64 = nil
+      end
+
+      if photo7_base64.present?
+        data = StringIO.new(Base64.decode64(photo7_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot4.png"
+        self.photo7 = data
+        self.photo7_base64 = nil
+      end
+
+      if photo8_base64.present?
+        data = StringIO.new(Base64.decode64(photo8_base64.split(',')[1]))
+        data.class_eval do
+          attr_accessor :content_type, :original_filename
+        end
+        data.content_type      = "image/png"
+        data.original_filename = "snapshot4.png"
+        self.photo8 = data
+        self.photo8_base64 = nil
+      end
+    end
+end

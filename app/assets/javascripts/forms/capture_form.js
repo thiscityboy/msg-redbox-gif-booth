@@ -1,6 +1,6 @@
 var CaptureForm = {
-  init: function() {
-    CaptureForm.form   = document.getElementsByClassName('edit_photo')[0];
+  init: function(form_class) {
+    CaptureForm.form   = document.getElementsByClassName(form_class)[0];
     CaptureForm.submit = document.getElementById('form-submit');
     CaptureForm.bindUI();
   },

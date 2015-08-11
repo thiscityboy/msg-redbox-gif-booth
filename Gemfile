@@ -17,6 +17,7 @@ gem "font-awesome-rails"
 gem "aws-sdk"
 gem "rollbar"
 gem "newrelic_rpm"
+gem "rmagick"
 
 group :development, :test do
   gem "better_errors"

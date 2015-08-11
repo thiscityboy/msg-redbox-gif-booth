@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918170604) do
+ActiveRecord::Schema.define(version: 20150811194234) do
 
   create_table "frames", force: true do |t|
     t.datetime "created_at"
@@ -20,6 +20,60 @@ ActiveRecord::Schema.define(version: 20140918170604) do
     t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
+  end
+
+  create_table "photo_sets", force: true do |t|
+    t.string   "mdn"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
+    t.integer  "photo1_file_size"
+    t.datetime "photo1_updated_at"
+    t.string   "photo2_file_name"
+    t.string   "photo2_content_type"
+    t.integer  "photo2_file_size"
+    t.datetime "photo2_updated_at"
+    t.string   "photo3_file_name"
+    t.string   "photo3_content_type"
+    t.integer  "photo3_file_size"
+    t.datetime "photo3_updated_at"
+    t.string   "photo4_file_name"
+    t.string   "photo4_content_type"
+    t.integer  "photo4_file_size"
+    t.datetime "photo4_updated_at"
+    t.text     "photo1_base64"
+    t.text     "photo2_base64"
+    t.text     "photo3_base64"
+    t.text     "photo4_base64"
+    t.string   "photo1_filename"
+    t.string   "photo2_filename"
+    t.string   "photo3_filename"
+    t.string   "photo4_filename"
+    t.string   "gif_file_name"
+    t.string   "gif_content_type"
+    t.integer  "gif_file_size"
+    t.datetime "gif_updated_at"
+    t.string   "photo5_file_name"
+    t.string   "photo5_content_type"
+    t.integer  "photo5_file_size"
+    t.datetime "photo5_updated_at"
+    t.string   "photo6_file_name"
+    t.string   "photo6_content_type"
+    t.integer  "photo6_file_size"
+    t.datetime "photo6_updated_at"
+    t.string   "photo7_file_name"
+    t.string   "photo7_content_type"
+    t.integer  "photo7_file_size"
+    t.datetime "photo7_updated_at"
+    t.string   "photo8_file_name"
+    t.string   "photo8_content_type"
+    t.integer  "photo8_file_size"
+    t.datetime "photo8_updated_at"
+    t.text     "photo5_base64"
+    t.text     "photo6_base64"
+    t.text     "photo7_base64"
+    t.text     "photo8_base64"
   end
 
   create_table "photos", force: true do |t|

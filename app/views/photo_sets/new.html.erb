@@ -1,0 +1,42 @@
+<div id='video-row'>
+  <div id='video-frame'>
+    <video id="live" autoplay></video>
+    <div class='processing' style='display:none;'>
+      <i class='fa fa-refresh fa-spin'></i>
+      <br/>
+      <div>Processing photo</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id='controls-row'>
+  <div id='capture-frame'>
+    <a id='btn-camera' href="#"><%= image_tag 'camera.png' %></a>
+    <div id='count-label' style='display:none;'></div>
+  </div>
+  <div id='next-frame'>
+    <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
+  </div>
+</div>
+
+<div class='hidden'>
+  <canvas id='scratch'></canvas>
+  <%= form_for @photo_set do |f| %>
+    <%= f.hidden_field :photo1_base64 %>
+    <%= f.hidden_field :photo2_base64 %>
+    <%= f.hidden_field :photo3_base64 %>
+    <%= f.hidden_field :photo4_base64 %>
+    <%= f.hidden_field :photo5_base64 %>
+    <%= f.hidden_field :photo6_base64 %>
+    <%= f.hidden_field :photo7_base64 %>
+    <%= f.hidden_field :photo8_base64 %>
+  <% end %>
+</div>
+
+<script>
+$(function() {
+  Photobooth.init();
+});
+</script>

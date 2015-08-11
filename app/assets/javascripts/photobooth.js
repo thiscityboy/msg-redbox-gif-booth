@@ -1,20 +1,20 @@
 var Photobooth = {
   settings: {
-    countdownDelay: 3,
+    countdownDelay: 1,
+    numberOfPhotos: 4,
     contentType: "image/png",
     defaultFileName: "snapshot.png",
   },
 
   init: function() {
-    Photobooth.frame         = document.getElementById("video-frame");
-    Photobooth.video         = document.getElementById("live");
-    Photobooth.canvas        = document.getElementById("scratch");
-    Photobooth.button        = document.getElementById('btn-camera');
-    Photobooth.label         = document.getElementById('count-label');
-    Photobooth.contentBase64 = document.getElementById('photo_content_base64');
-    Photobooth.contentType   = document.getElementById('photo_content_type');
-    Photobooth.contentName   = document.getElementById('photo_content_filename');
-    Photobooth.next          = document.getElementById("next-frame");
+    Photobooth.form                = $("form");
+    Photobooth.frame               = document.getElementById("video-frame");
+    Photobooth.video               = document.getElementById("live");
+    Photobooth.canvas              = document.getElementById("scratch");
+    Photobooth.button              = document.getElementById('btn-camera');
+    Photobooth.label               = document.getElementById('count-label');
+    Photobooth.contentType         = "image/png"; //document.getElementById('photo_content_type');
+    Photobooth.next                = document.getElementById("next-frame");
     Photobooth.bindUI();
     Photobooth.checkWebRTC();
   },
@@ -54,11 +54,12 @@ var Photobooth = {
     e.preventDefault();
     Photobooth.clearPreviousPhoto();
     $(Photobooth.button).fadeOut('fast', function() {
-      $(Photobooth.label).show();
       $(Photobooth.label).text("Ready?");
+      $(Photobooth.label).fadeIn();
+      Photobooth.currentPhoto = 1;
+      Photobooth.currentCount = Photobooth.settings.countdownDelay;
+      Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 100);
     });
-    Photobooth.currentCount = Photobooth.settings.countdownDelay;
-    Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 1000);
   },
 
   clearPreviousPhoto: function() {
@@ -73,51 +74,82 @@ var Photobooth = {
 
   processCountdown: function() {
     if(Photobooth.currentCount === 0) {
-      Photobooth.takePhoto();
+      console.log("Taking photo #%s", Photobooth.currentPhoto);
+      Photobooth.takePhoto(Photobooth.currentPhoto);
       Photobooth.stopCountdown();
+      // Reset and take another one
+      Photobooth.currentPhoto += 1;
+      $(Photobooth.label).html("&nbsp;");
+      if(Photobooth.currentPhoto <= Photobooth.settings.numberOfPhotos) {
+        console.log("Taking another...");
+        Photobooth.currentCount = Photobooth.settings.countdownDelay;
+        Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 1000);
+      } else {
+        Photobooth.currentPhoto = 1;
+        console.log("Done!");
+
+        $(Photobooth.video).fadeOut('fast', function() {
+          Photobooth.form.submit();
+          $(".processing").fadeIn('fast');
+        });
+
+        // // Finished
+        // $(Photobooth.label).hide();
+        // $(Photobooth.button).fadeIn('fast');
+
+        // // Show next button
+        // $(Photobooth.video).fadeOut('fast', function() {
+        //   // $(Photobooth.video).addClass("hidden");
+        //   // $(Photobooth.frame).append(img);
+        //   // $(Photobooth.frame).fadeIn('fast');
+        //   $(Photobooth.next).fadeIn('fast');
+        //   // $(Photobooth.video).fadeIn();
+        // });
+      }
     } else {
-      $(Photobooth.label).text(Photobooth.currentCount);
+      $(Photobooth.label).text("Ready?");
       Photobooth.currentCount -= 1;
     }
   },
 
   stopCountdown: function() {
     clearInterval(Photobooth.countdownInterval);
-    $(Photobooth.label).hide();
-    $(Photobooth.label).text('');
-    $(Photobooth.button).fadeIn('fast');
+    // $(Photobooth.label).hide();
+    // $(Photobooth.label).text('');
+    // $(Photobooth.button).fadeIn('fast');
   },
 
-  takePhoto: function() {
+  takePhoto: function(number) {
     Photobooth.canvas.width  = 640;
     Photobooth.canvas.height = 480;
 
     var c = Photobooth.canvas.getContext("2d");
     c.drawImage(Photobooth.video, 0, 0, Photobooth.canvas.width, Photobooth.canvas.height);
 
-    Photobooth.processPhoto();
+    $(Photobooth.video).fadeOut('fast');
+    $(Photobooth.video).fadeIn('fast');
+
+    Photobooth.processPhoto(number);
   },
 
-  processPhoto: function() {
+  processPhoto: function(number) {
     var img = document.createElement("img");
     img.src    = Photobooth.canvas.toDataURL(Photobooth.settings.contentType);
     img.width  = Photobooth.canvas.width;
     img.height = Photobooth.canvas.height;
 
-    Photobooth.saveToForm();
+    Photobooth.saveToForm(number);
 
-    $(Photobooth.video).fadeOut('fast', function() {
-      $(Photobooth.video).addClass("hidden");
-      $(Photobooth.frame).append(img);
-      $(Photobooth.frame).fadeIn('fast');
-      $(Photobooth.next).fadeIn('fast');
-      $(Photobooth.video).fadeIn();
-    });
+    // $(Photobooth.video).fadeOut('fast', function() {
+    //   $(Photobooth.video).addClass("hidden");
+    //   $(Photobooth.frame).append(img);
+    //   $(Photobooth.frame).fadeIn('fast');
+    //   $(Photobooth.next).fadeIn('fast');
+    //   $(Photobooth.video).fadeIn();
+    // });
   },
 
-  saveToForm: function() {
-    Photobooth.contentBase64.value = Photobooth.canvas.toDataURL(Photobooth.settings.contentType);
-    Photobooth.contentType.value   = Photobooth.settings.contentType;
-    Photobooth.contentName.value   = Photobooth.settings.defaultFileName;
+  saveToForm: function(number) {
+    document.getElementById('photo_set_photo' + number + '_base64').value   = Photobooth.canvas.toDataURL(Photobooth.settings.contentType);
   },
 };
