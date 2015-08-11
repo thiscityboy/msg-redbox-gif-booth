@@ -23,6 +23,7 @@ var Framer = {
     Framer.framedType   = document.getElementById('photo_framed_type');
     Framer.loading      = document.getElementById('loading');
     Framer.frames       = $(Framer.row).data('frames');
+    console.log("Initializing...");
     Framer.framePhoto();
   },
 
@@ -36,6 +37,7 @@ var Framer = {
   },
 
   createFrames: function() {
+    console.log("Creating frames");
     $(Framer.frames).each(function(i, frameUrl) {
       var canvas    = document.createElement("canvas");
       canvas.width  = Framer.settings.width;
@@ -55,6 +57,7 @@ var Framer = {
   },
 
   applyFrame: function() {
+    console.log("Applying frame");
     this.context.drawImage(this, 0, 0, 740, 680);
 
     this.context.font        = Framer.settings.canvas.font;

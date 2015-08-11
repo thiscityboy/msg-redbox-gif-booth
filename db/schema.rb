@@ -11,113 +11,118 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811194234) do
+ActiveRecord::Schema.define(version: 20150811212302) do
 
-  create_table "frames", force: true do |t|
+  create_table "frames", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content_file_name"
-    t.string   "content_content_type"
+    t.string   "content_file_name",    limit: 255
+    t.string   "content_content_type", limit: 255
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
   end
 
-  create_table "photo_sets", force: true do |t|
-    t.string   "mdn"
+  create_table "photo_sets", force: :cascade do |t|
+    t.string   "mdn",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo1_file_name"
-    t.string   "photo1_content_type"
+    t.string   "photo1_file_name",    limit: 255
+    t.string   "photo1_content_type", limit: 255
     t.integer  "photo1_file_size"
     t.datetime "photo1_updated_at"
-    t.string   "photo2_file_name"
-    t.string   "photo2_content_type"
+    t.string   "photo2_file_name",    limit: 255
+    t.string   "photo2_content_type", limit: 255
     t.integer  "photo2_file_size"
     t.datetime "photo2_updated_at"
-    t.string   "photo3_file_name"
-    t.string   "photo3_content_type"
+    t.string   "photo3_file_name",    limit: 255
+    t.string   "photo3_content_type", limit: 255
     t.integer  "photo3_file_size"
     t.datetime "photo3_updated_at"
-    t.string   "photo4_file_name"
-    t.string   "photo4_content_type"
+    t.string   "photo4_file_name",    limit: 255
+    t.string   "photo4_content_type", limit: 255
     t.integer  "photo4_file_size"
     t.datetime "photo4_updated_at"
     t.text     "photo1_base64"
     t.text     "photo2_base64"
     t.text     "photo3_base64"
     t.text     "photo4_base64"
-    t.string   "photo1_filename"
-    t.string   "photo2_filename"
-    t.string   "photo3_filename"
-    t.string   "photo4_filename"
-    t.string   "gif_file_name"
-    t.string   "gif_content_type"
+    t.string   "photo1_filename",     limit: 255
+    t.string   "photo2_filename",     limit: 255
+    t.string   "photo3_filename",     limit: 255
+    t.string   "photo4_filename",     limit: 255
+    t.string   "gif_file_name",       limit: 255
+    t.string   "gif_content_type",    limit: 255
     t.integer  "gif_file_size"
     t.datetime "gif_updated_at"
-    t.string   "photo5_file_name"
-    t.string   "photo5_content_type"
+    t.string   "photo5_file_name",    limit: 255
+    t.string   "photo5_content_type", limit: 255
     t.integer  "photo5_file_size"
     t.datetime "photo5_updated_at"
-    t.string   "photo6_file_name"
-    t.string   "photo6_content_type"
+    t.string   "photo6_file_name",    limit: 255
+    t.string   "photo6_content_type", limit: 255
     t.integer  "photo6_file_size"
     t.datetime "photo6_updated_at"
-    t.string   "photo7_file_name"
-    t.string   "photo7_content_type"
+    t.string   "photo7_file_name",    limit: 255
+    t.string   "photo7_content_type", limit: 255
     t.integer  "photo7_file_size"
     t.datetime "photo7_updated_at"
-    t.string   "photo8_file_name"
-    t.string   "photo8_content_type"
+    t.string   "photo8_file_name",    limit: 255
+    t.string   "photo8_content_type", limit: 255
     t.integer  "photo8_file_size"
     t.datetime "photo8_updated_at"
     t.text     "photo5_base64"
     t.text     "photo6_base64"
     t.text     "photo7_base64"
     t.text     "photo8_base64"
-  end
-
-  create_table "photos", force: true do |t|
-    t.string   "family_name"
-    t.string   "mdn"
-    t.text     "content_base64"
-    t.string   "content_type"
-    t.string   "content_filename"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "content_file_name"
-    t.string   "content_content_type"
-    t.integer  "content_file_size"
-    t.datetime "content_updated_at"
     t.string   "framed_file_name"
     t.string   "framed_content_type"
     t.integer  "framed_file_size"
     t.datetime "framed_updated_at"
     t.text     "framed_base64"
-    t.string   "framed_filename"
-    t.string   "framed_type"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "family_name",          limit: 255
+    t.string   "mdn",                  limit: 255
+    t.text     "content_base64"
+    t.string   "content_type",         limit: 255
+    t.string   "content_filename",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content_file_name",    limit: 255
+    t.string   "content_content_type", limit: 255
+    t.integer  "content_file_size"
+    t.datetime "content_updated_at"
+    t.string   "framed_file_name",     limit: 255
+    t.string   "framed_content_type",  limit: 255
+    t.integer  "framed_file_size"
+    t.datetime "framed_updated_at"
+    t.text     "framed_base64"
+    t.string   "framed_filename",      limit: 255
+    t.string   "framed_type",          limit: 255
     t.integer  "stop_id"
   end
 
   add_index "photos", ["stop_id"], name: "index_photos_on_stop_id"
 
-  create_table "stops", force: true do |t|
+  create_table "stops", force: :cascade do |t|
     t.date     "date"
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

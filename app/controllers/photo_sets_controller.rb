@@ -7,6 +7,12 @@ class PhotoSetsController < ApplicationController
     @photo_set = PhotoSet.new
   end
 
+  def edit
+    @photo_set = PhotoSet.find(params[:id])
+    @frames = Frame.first(3).map { |f| f.content.url }
+  end
+
+
   def create
     @photo_set = PhotoSet.create! photo_set_params
     @photo_set.save_gif!

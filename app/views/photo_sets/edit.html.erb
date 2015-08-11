@@ -1,0 +1,35 @@
+<div id='loading' class='loading'>
+  <i class='fa fa-refresh fa-spin'></i>
+  <br/>
+  <div>Processing photo</div>
+</div>
+
+<div id='snapshot-row'>
+  <div id='snapshot-frame'>
+  </div>
+</div>
+
+<div id='frames-row' data-frames="<%= @frames %>">
+  <div id='back-frame'>
+    <%= link_to image_tag('back.png'), new_photo_set_url %>
+  </div>
+  <div id='frames-frame'>
+    &nbsp;
+  </div>
+  <div id="next-frame">
+    <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
+  </div>
+</div>
+
+<div class='hidden'>
+  <%= form_for(@photo_set) do |f| %>
+    <%= f.hidden_field :framed_base64 %>
+  <% end %>
+</div>
+
+<script>
+$(function() {
+  Framer.init('<%= @photo_set.gif.url %>', 'Vibes');
+  FrameForm.init();
+});
+</script>
