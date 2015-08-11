@@ -3,7 +3,7 @@ source 'https://repo.fury.io/svdEKiyaqdZ1xhagHajp/me/'
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-gem "rails", "4.1.1"
+gem "rails", "4.2.1"
 gem "sass-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
 gem "jquery-rails"
