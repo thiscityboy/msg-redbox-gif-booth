@@ -4,13 +4,13 @@
   <p>Send this photo to your phone now! From there, you can also share the photo with your friends and family via Facebook and Twitter.</p>
 </div>
 <div class='image'>
-  <%= image_tag @photo_set.gif.url %>
+  <%= image_tag @photo_set.gif.url, class: 'gif-image' %>
+  <%= image_tag @photo_set.frame.content.url, class: 'frame' %>
 </div>
 <script>
 $(function() {
-
   setTimeout(function() {
     window.location = "/";
-  }, 5000);
+  }, 10000);
 });
 </script>

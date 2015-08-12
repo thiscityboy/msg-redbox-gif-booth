@@ -20,5 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Sidekiq
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root 'photo_sets#index'
 end

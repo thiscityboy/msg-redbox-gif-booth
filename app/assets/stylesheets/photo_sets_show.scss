@@ -19,6 +19,8 @@ body.photo_sets.show {
   }
 
   .image > img {
+    position: fixed;
+    left: 55%;
     width: 514px;
     height: auto;
   }

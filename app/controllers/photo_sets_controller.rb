@@ -25,7 +25,6 @@ class PhotoSetsController < ApplicationController
   def update
     @photo_set = PhotoSet.find(params[:id])
     @photo_set.update(photo_set_params)
-    @photo_set.apply_frame!
     redirect_to sms_photo_set_url(@photo_set)
   end
 
@@ -37,7 +36,7 @@ class PhotoSetsController < ApplicationController
     puts params
     @photo_set = PhotoSet.find(params[:id])
     @photo_set.update(mdn: params[:mdn])
-    @photo_set.send_sms
+    ApplyAndSendWorker.perform_async(@photo_set.id)
     redirect_to @photo_set
   end
 
