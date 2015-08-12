@@ -1,16 +1,18 @@
 <div id='gif-row'>
   <div id='gif-frame'>
     <%= image_tag @photo_set.gif.url %>
-    <%= image_tag @frames.first %>
+    <%= image_tag "", class: 'current-frame' %>
   </div>
 </div>
 
-<div id='frames-row' data-frames="<%= @frames %>">
+<div id='frames-row'>
   <div id='back-frame'>
     <%= link_to image_tag('back.png'), new_photo_set_url %>
   </div>
   <div id='frames-frame'>
-    &nbsp;
+    <% @frames.each do |frame| %>
+      <img class='gif-frame' src='<%= frame.content.url %>' id='<%= frame.id %>'/>
+    <% end %>
   </div>
   <div id="next-frame">
     <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
@@ -19,6 +21,25 @@
 
 <div class='hidden'>
   <%= form_for(@photo_set) do |f| %>
-    <%= f.hidden_field :framed_base64 %>
+    <%= f.hidden_field :frame_id %>
   <% end %>
 </div>
+
+<script type='text/javascript'>
+$(function() {
+
+  $(".gif-frame").on('click', function() {
+    if($(".current-frame").attr("src") == $(this).attr("src")) {
+      $(".current-frame").attr("src", "")
+      $("#photo_set_frame_id").val(null)
+    } else {
+      $(".current-frame").attr("src", $(this).attr("src"))
+      $("#photo_set_frame_id").val($(this).attr("id"))
+    }
+  });
+
+  $("#form-submit").on('click', function() {
+    $("form").submit();
+  });
+});
+</script>

@@ -1,5 +1,7 @@
 class PhotoSet < ActiveRecord::Base
 
+  belongs_to :frame
+
   before_save :decode_base64_image
 
   has_attached_file :photo1, :styles => { :medium => "640x480" }
@@ -23,10 +25,10 @@ class PhotoSet < ActiveRecord::Base
   validates_attachment_content_type :photo8, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :gif,    :content_type => /\Aimage\/.*\Z/
 
-  def stitch(photo, frame)
+  def stitch(photo, new_frame)
     photo_framing = []
     photo_framing << photo.url.gsub("https", "http")
-    photo_framing << frame.content.url.gsub("https", "http")
+    photo_framing << new_frame.content.url.gsub("https", "http")
     photo_list = Magick::ImageList.new(*photo_framing)
 
     flattened = photo_list.flatten_images
@@ -35,7 +37,7 @@ class PhotoSet < ActiveRecord::Base
     open photo_name
   end
 
-  def apply_frame!(frame)
+  def apply_frame!
     self.photo1 = stitch photo1, frame
     self.photo2 = stitch photo2, frame
     self.photo3 = stitch photo3, frame
