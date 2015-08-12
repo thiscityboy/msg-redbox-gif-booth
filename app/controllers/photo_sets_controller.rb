@@ -12,7 +12,6 @@ class PhotoSetsController < ApplicationController
     @frames = Frame.find_each.map { |f| f.content.url }
   end
 
-
   def create
     @photo_set = PhotoSet.create! photo_set_params
     @photo_set.save_gif!
@@ -26,6 +25,7 @@ class PhotoSetsController < ApplicationController
   def update
     @photo_set = PhotoSet.find(params[:id])
     @photo_set.update(photo_set_params)
+    redirect_to @photo_set
   end
 
   def send_photo

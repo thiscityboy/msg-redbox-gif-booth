@@ -1,0 +1,68 @@
+body.photo_sets.new {
+
+  #video-row {
+    text-align: center;
+  }
+
+  #video-frame {
+    background-color: #a9a9a9;
+    margin: auto;
+    padding: 20px;
+    width: 56.25%;
+  }
+
+  #video-frame > img {
+    border: solid 5px white;
+    box-sizing: content-box;
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  }
+
+  video {
+    border: solid 5px white;
+    box-sizing: content-box;
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  }
+
+  .processing {
+    text-align: center;
+    width: 100%;
+    min-height: 480px;
+    padding: 50px;
+
+    i { font-size: 150px; margin-bottom: 10px; }
+    font-size: 32px;
+  }
+
+  #controls-row {
+    clear: both;
+    text-align: center;
+  }
+
+  #capture-frame {
+    background-color: #a9a9a9;
+    width: 56.25%;
+    height: 20%;
+    float: left;
+    margin-left: 21.875%;
+    padding: 0 0 40px 0;
+    bottom: 0;
+  }
+
+  #next-frame {
+    display: none;
+    float: right;
+    padding: 0 48px 0 0;
+    margin: -40px 0 0 0;
+  }
+
+  #count-label {
+    color: #d62026;
+    font-family: 'VerizonApexBold', sans-serif;
+    font-size: 50px;
+    padding: 10px;
+  }
+}

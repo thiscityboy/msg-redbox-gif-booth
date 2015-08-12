@@ -1,0 +1,43 @@
+body.photo_sets.show {
+
+  .main {
+    padding: 48px 48px;
+    clear: both;
+  }
+
+  .text {
+    float: left;
+    text-align: left;
+    width: 52.6%;
+    margin-top: 96px;
+  }
+
+  .image {
+    float: left;
+    text-align: right;
+    width: 47.3%;
+  }
+
+  .image > img {
+    width: 514px;
+    height: auto;
+  }
+
+  h1 {
+    margin: 0 0 20px 0;
+  }
+
+  h2 {
+    margin: 0 0 0px 0;
+  }
+
+  p {
+    margin: 0 0 38px 0;
+  }
+
+  .btn-verizon {
+    width: 410px;
+    font-size: 26px;
+    padding: 14px 0;
+  }
+}

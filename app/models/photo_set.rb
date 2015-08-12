@@ -23,6 +23,27 @@ class PhotoSet < ActiveRecord::Base
   validates_attachment_content_type :photo8, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :gif,    :content_type => /\Aimage\/.*\Z/
 
+  def stitch(photo, frame)
+    photo_framing = []
+    photo_framing << photo.url.gsub("https", "http")
+    photo_framing << frame.content.url.gsub("https", "http")
+    photo_list = Magick::ImageList.new(*photo_framing)
+
+    flattened = photo_list.flatten_images
+    photo_name = "Framing-#{Random.new.rand(500)}-#{photo.original_filename}"
+    flattened.write photo_name
+    open photo_name
+  end
+
+  def apply_frame!(frame)
+    self.photo1 = stitch photo1, frame
+    self.photo2 = stitch photo2, frame
+    self.photo3 = stitch photo3, frame
+    self.photo4 = stitch photo4, frame
+    self.save
+    self.save_gif!
+  end
+
   def to_image_list
     image_urls = []
     image_urls << photo1.url.gsub("https", "http") if photo1.present?

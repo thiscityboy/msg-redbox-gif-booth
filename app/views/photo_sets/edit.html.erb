@@ -1,11 +1,7 @@
-<div id='loading' class='loading'>
-  <i class='fa fa-refresh fa-spin'></i>
-  <br/>
-  <div>Processing photo</div>
-</div>
-
-<div id='snapshot-row'>
-  <div id='snapshot-frame'>
+<div id='gif-row'>
+  <div id='gif-frame'>
+    <%= image_tag @photo_set.gif.url %>
+    <%= image_tag @frames.first %>
   </div>
 </div>
 
@@ -26,10 +22,3 @@
     <%= f.hidden_field :framed_base64 %>
   <% end %>
 </div>
-
-<script>
-$(function() {
-  Framer.init('<%= @photo_set.gif.url %>', 'Vibes');
-  FrameForm.init();
-});
-</script>
