@@ -26,13 +26,19 @@ class PhotoSetsController < ApplicationController
     @photo_set = PhotoSet.find(params[:id])
     @photo_set.update(photo_set_params)
     @photo_set.apply_frame!
+    redirect_to sms_photo_set_url(@photo_set)
+  end
+
+  def sms
+    @photo_set = PhotoSet.find(params[:id])
+  end
+
+  def submit
+    puts params
+    @photo_set = PhotoSet.find(params[:id])
+    @photo_set.update(mdn: params[:mdn])
+    @photo_set.send_sms
     redirect_to @photo_set
-  end
-
-  def send_photo
-  end
-
-  def done
   end
 
   private

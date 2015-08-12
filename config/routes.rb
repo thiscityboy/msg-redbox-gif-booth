@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 
   resources :photo_sets, shallow: true do
     member do
-      get :send_photo
-      get :done
+      get :sms
+      post :submit
     end
   end
 
