@@ -7,7 +7,7 @@
 
 <div id='frames-row'>
   <div id='back-frame'>
-    <%= link_to image_tag('back.png'), new_photo_set_url %>
+    <a href="<%= new_photo_set_url %>"><h3>BACK</h3></a>
   </div>
   <div id='frames-frame'>
     <% @frames.each do |frame| %>
@@ -15,7 +15,7 @@
     <% end %>
   </div>
   <div id="next-frame">
-    <a id='form-submit' href='#'><%= image_tag 'next.png' %></a>
+    <a id='form-submit' href='#'><h3>NEXT</h3></a>
   </div>
 </div>
 

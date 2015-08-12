@@ -13,6 +13,7 @@
  *= require animate
  *= require bootstrap
  *= require font-awesome
+ *= require jquery.keypad
  *= require_tree .
  *= require_self
  */
@@ -20,6 +21,10 @@ body {
   background-image: url("<%= asset_url 'bg-gradient.jpg' %>");
   background-size: 1280px 800px;
   border-top: 15px solid #268FD4;
+}
+
+a, a:active, a:hover {
+  text-decoration: none;
 }
 
 .home-img {

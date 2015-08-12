@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require jquery.validate.min
 //= require jquery.validate.extensions
+//= require jquery.keypad
 //= require bootstrap
 //= require_tree .

@@ -2,13 +2,32 @@ body.photo_sets.sms {
 
   #sms-row {
     text-align: center;
+    margin: 20px auto 0 auto;
   }
 
   #sms-frame {
-    background-color: #a9a9a9;
     margin: auto;
     padding: 20px;
     width: 56.25%;
   }
+
+  .number {
+  	color: white;
+  }
+
+  h3.sms  {
+   font-family: "museo-slab",serif;
+   font-weight: 300;
+   font-size: 32px;
+   color: white;
+   text-transform: uppercase;
+  }
+
+.keypad button.delete, .keypad button.submit {
+    background: white;
+    color: black;
+      font-family: "museo-sans-rounded",sans-serif;
+
+}
 
 }
