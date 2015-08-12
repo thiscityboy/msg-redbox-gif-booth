@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811212302) do
+ActiveRecord::Schema.define(version: 20150812163239) do
 
   create_table "frames", force: :cascade do |t|
     t.datetime "created_at"
@@ -79,7 +79,10 @@ ActiveRecord::Schema.define(version: 20150811212302) do
     t.integer  "framed_file_size"
     t.datetime "framed_updated_at"
     t.text     "framed_base64"
+    t.integer  "frame_id"
   end
+
+  add_index "photo_sets", ["frame_id"], name: "index_photo_sets_on_frame_id"
 
   create_table "photos", force: :cascade do |t|
     t.string   "family_name",          limit: 255

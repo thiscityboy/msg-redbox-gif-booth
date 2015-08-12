@@ -1,5 +1,7 @@
 class PhotoSet < ActiveRecord::Base
 
+  belongs_to :frame
+
   before_save :decode_base64_image
 
   has_attached_file :photo1, :styles => { :medium => "640x480" }
@@ -23,10 +25,10 @@ class PhotoSet < ActiveRecord::Base
   validates_attachment_content_type :photo8, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :gif,    :content_type => /\Aimage\/.*\Z/
 
-  def stitch(photo, frame)
+  def stitch(photo, new_frame)
     photo_framing = []
     photo_framing << photo.url.gsub("https", "http")
-    photo_framing << frame.content.url.gsub("https", "http")
+    photo_framing << new_frame.content.url.gsub("https", "http")
     photo_list = Magick::ImageList.new(*photo_framing)
 
     flattened = photo_list.flatten_images
@@ -35,7 +37,7 @@ class PhotoSet < ActiveRecord::Base
     open photo_name
   end
 
-  def apply_frame!(frame)
+  def apply_frame!
     self.photo1 = stitch photo1, frame
     self.photo2 = stitch photo2, frame
     self.photo3 = stitch photo3, frame
@@ -44,7 +46,7 @@ class PhotoSet < ActiveRecord::Base
     self.save_gif!
   end
 
-  def to_image_list
+  def to_image_array
     image_urls = []
     image_urls << photo1.url.gsub("https", "http") if photo1.present?
     image_urls << photo2.url.gsub("https", "http") if photo2.present?
@@ -54,7 +56,21 @@ class PhotoSet < ActiveRecord::Base
     image_urls << photo6.url.gsub("https", "http") if photo6.present?
     image_urls << photo7.url.gsub("https", "http") if photo7.present?
     image_urls << photo8.url.gsub("https", "http") if photo8.present?
-    Magick::ImageList.new(*image_urls)
+    image_urls
+  end
+
+  def to_image_list
+    Magick::ImageList.new(*to_image_array)
+  end
+
+  def to_mp4
+    animation = Magick::ImageList.new
+    animation.ticks_per_second = 60
+    to_image_array.each{ |frame|
+      animation.push(frame)
+      animation.cur_image.delay = 2
+    }
+    animation.write("animation-#{id}.mp4")
   end
 
   def save_gif!
@@ -62,6 +78,11 @@ class PhotoSet < ActiveRecord::Base
     self.to_image_list.write(gif_id)
     self.gif = open(gif_id)
     self.save
+  end
+
+  def send_sms
+    shortened_link = UrlShortener.shorten self.gif.url, mdn: self.mdn
+    Messages.submit "Here is your photo: #{shortened_link}", self.mdn, "63901"
   end
 
   private

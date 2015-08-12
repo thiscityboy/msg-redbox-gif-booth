@@ -16,6 +16,12 @@ body.photo_sets.edit {
     padding: 20px;
   }
 
+  #gif-frame > img {
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    margin: auto;
+  }
   #snapshot-frame {
     display: none;
     font-family: 'VerizonApexMediumItalic', sans-serif;
@@ -46,8 +52,16 @@ body.photo_sets.edit {
     text-align: center;
   }
 
+  .gif-frame {
+    border: solid 1px black;
+    height: auto;
+    width: 200px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
   #frames-frame > img {
-    display: none;
+    // display: none;
     height: auto;
     width: 200px;
     margin: 0 10px;
