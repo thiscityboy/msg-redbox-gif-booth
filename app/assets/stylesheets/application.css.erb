@@ -10,47 +10,49 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require animate
  *= require bootstrap
  *= require font-awesome
  *= require_tree .
  *= require_self
  */
 body {
-  background-image: url("<%= asset_url 'bg.png' %>");
+  background-image: url("<%= asset_url 'bg-gradient.jpg' %>");
   background-size: 1280px 800px;
+  border-top: 15px solid #268FD4;
 }
 
-header {
-  padding: 0 48px;
-}
-
-h1 {
-  font-family: 'VerizonApexBold', sans-serif;
-  font-size: 79px;
-  text-transform: uppercase;
-  margin: 0;
+.home-img {
+  position: absolute;
+  top: 15px;
+  right: 0px;
 }
 
 h2 {
-  font-family: 'VerizonApexBook', sans-serif;
-  font-style: italic;
+  font-family: "museo-slab",serif;
+  font-weight: 300;
   font-size: 68px;
+  color: #31a8e6;
   text-transform: uppercase;
   margin: 0;
 }
 
 p {
-  font-family: 'VerizonApexMedium', sans-serif;
+  font-family: "museo-sans-rounded",sans-serif;
+  color: white;
   font-size: 21px;
+  font-weight: 700;
   text-transform: uppercase;
   margin: 0;
 }
 
 .btn-verizon, .btn-verizon:hover {
   color: #fff;
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-  background-color: #d62026;
+  font-family: "museo-sans-rounded",sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: uppercase;
+  background-color: #2A96DF;
 }
 
 .btn-circle {

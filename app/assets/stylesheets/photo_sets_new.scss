@@ -5,7 +5,7 @@ body.photo_sets.new {
   }
 
   #video-frame {
-    background-color: #a9a9a9;
+    background-color: rgba(0,0,0,.8);
     margin: auto;
     padding: 20px;
     width: 56.25%;
@@ -20,9 +20,9 @@ body.photo_sets.new {
   }
 
   video {
-    border: solid 5px white;
+    border: solid 4px white;
     box-sizing: content-box;
-    border-radius: 5px;
+    border-radius: 4px;
     width: 640px;
     height: 480px;
   }
@@ -43,7 +43,7 @@ body.photo_sets.new {
   }
 
   #capture-frame {
-    background-color: #a9a9a9;
+    background-color: rgba(0,0,0,.8);
     width: 56.25%;
     height: 20%;
     float: left;
