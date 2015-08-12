@@ -1,5 +1,6 @@
 var Photobooth = {
   settings: {
+    getReadyDelay: 3,
     countdownDelay: 1,
     numberOfPhotos: 4,
     contentType: "image/png",
@@ -20,7 +21,7 @@ var Photobooth = {
   },
 
   bindUI: function() {
-    Photobooth.button.addEventListener("click", Photobooth.startCountdown);
+    Photobooth.button.addEventListener("click", Photobooth.getReadyCountdown);
   },
 
   checkWebRTC: function() {
@@ -50,16 +51,35 @@ var Photobooth = {
     });
   },
 
-  startCountdown: function(e) {
-    e.preventDefault();
-    Photobooth.clearPreviousPhoto();
+  getReadyCountdown: function(e) {
     $(Photobooth.button).fadeOut('fast', function() {
       $(Photobooth.label).text("Ready?");
+      $(Photobooth.label).fadeIn();
+      Photobooth.getReadyCount = Photobooth.settings.getReadyDelay;
+      Photobooth.getReadyInterval = setInterval(Photobooth.processGetReady, 1000);
+    });
+  },
+
+  processGetReady: function(e) {
+    if(Photobooth.getReadyCount === 0) {
+      clearInterval(Photobooth.getReadyInterval);
+      Photobooth.startCountdown(e);
+    } else {
+      $(Photobooth.label).text(Photobooth.getReadyCount);
+      Photobooth.getReadyCount -= 1;
+    }
+  },
+
+  startCountdown: function(e) {
+    // e.preventDefault();
+    Photobooth.clearPreviousPhoto();
+    // $(Photobooth.button).fadeOut('fast', function() {
+      $(Photobooth.label).text("Pose!");
       $(Photobooth.label).fadeIn();
       Photobooth.currentPhoto = 1;
       Photobooth.currentCount = Photobooth.settings.countdownDelay;
       Photobooth.countdownInterval = setInterval(Photobooth.processCountdown, 100);
-    });
+    // });
   },
 
   clearPreviousPhoto: function() {
@@ -92,31 +112,15 @@ var Photobooth = {
           Photobooth.form.submit();
           $(".processing").fadeIn('fast');
         });
-
-        // // Finished
-        // $(Photobooth.label).hide();
-        // $(Photobooth.button).fadeIn('fast');
-
-        // // Show next button
-        // $(Photobooth.video).fadeOut('fast', function() {
-        //   // $(Photobooth.video).addClass("hidden");
-        //   // $(Photobooth.frame).append(img);
-        //   // $(Photobooth.frame).fadeIn('fast');
-        //   $(Photobooth.next).fadeIn('fast');
-        //   // $(Photobooth.video).fadeIn();
-        // });
       }
     } else {
-      $(Photobooth.label).text("Ready?");
+      $(Photobooth.label).text("Pose!");
       Photobooth.currentCount -= 1;
     }
   },
 
   stopCountdown: function() {
     clearInterval(Photobooth.countdownInterval);
-    // $(Photobooth.label).hide();
-    // $(Photobooth.label).text('');
-    // $(Photobooth.button).fadeIn('fast');
   },
 
   takePhoto: function(number) {
@@ -139,14 +143,6 @@ var Photobooth = {
     img.height = Photobooth.canvas.height;
 
     Photobooth.saveToForm(number);
-
-    // $(Photobooth.video).fadeOut('fast', function() {
-    //   $(Photobooth.video).addClass("hidden");
-    //   $(Photobooth.frame).append(img);
-    //   $(Photobooth.frame).fadeIn('fast');
-    //   $(Photobooth.next).fadeIn('fast');
-    //   $(Photobooth.video).fadeIn();
-    // });
   },
 
   saveToForm: function(number) {
