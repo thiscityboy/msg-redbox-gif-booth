@@ -1,9 +1,24 @@
+
+
 <div id='sms-row'>
   <div id='sms-frame'>
-    <h3>What is your phone number?</h3>
+    <h3 class="sms">What's yo phone digits?</h3>
     <%= form_tag(submit_photo_set_url(@photo_set)) do %>
       <%= telephone_field_tag :mdn, @photo_set.mdn, class: 'form-control', placeholder: "Mobile Phone Number" %>
-      <%= submit_tag "Submit", class: 'btn' %>
+     
     <% end %>
   </div>
 </div>
+
+<div align="center">
+	<div id="keypad" width="300"></div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#keypad').keypad({
+        inputField: $('form #mdn'),
+        submitButtonText: 'GO'
+    });
+});
+</script>

@@ -23,51 +23,51 @@ ActiveRecord::Schema.define(version: 20150812163239) do
   end
 
   create_table "photo_sets", force: :cascade do |t|
-    t.string   "mdn",                 limit: 255
+    t.string   "mdn"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo1_file_name",    limit: 255
-    t.string   "photo1_content_type", limit: 255
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
     t.integer  "photo1_file_size"
     t.datetime "photo1_updated_at"
-    t.string   "photo2_file_name",    limit: 255
-    t.string   "photo2_content_type", limit: 255
+    t.string   "photo2_file_name"
+    t.string   "photo2_content_type"
     t.integer  "photo2_file_size"
     t.datetime "photo2_updated_at"
-    t.string   "photo3_file_name",    limit: 255
-    t.string   "photo3_content_type", limit: 255
+    t.string   "photo3_file_name"
+    t.string   "photo3_content_type"
     t.integer  "photo3_file_size"
     t.datetime "photo3_updated_at"
-    t.string   "photo4_file_name",    limit: 255
-    t.string   "photo4_content_type", limit: 255
+    t.string   "photo4_file_name"
+    t.string   "photo4_content_type"
     t.integer  "photo4_file_size"
     t.datetime "photo4_updated_at"
     t.text     "photo1_base64"
     t.text     "photo2_base64"
     t.text     "photo3_base64"
     t.text     "photo4_base64"
-    t.string   "photo1_filename",     limit: 255
-    t.string   "photo2_filename",     limit: 255
-    t.string   "photo3_filename",     limit: 255
-    t.string   "photo4_filename",     limit: 255
-    t.string   "gif_file_name",       limit: 255
-    t.string   "gif_content_type",    limit: 255
+    t.string   "photo1_filename"
+    t.string   "photo2_filename"
+    t.string   "photo3_filename"
+    t.string   "photo4_filename"
+    t.string   "gif_file_name"
+    t.string   "gif_content_type"
     t.integer  "gif_file_size"
     t.datetime "gif_updated_at"
-    t.string   "photo5_file_name",    limit: 255
-    t.string   "photo5_content_type", limit: 255
+    t.string   "photo5_file_name"
+    t.string   "photo5_content_type"
     t.integer  "photo5_file_size"
     t.datetime "photo5_updated_at"
-    t.string   "photo6_file_name",    limit: 255
-    t.string   "photo6_content_type", limit: 255
+    t.string   "photo6_file_name"
+    t.string   "photo6_content_type"
     t.integer  "photo6_file_size"
     t.datetime "photo6_updated_at"
-    t.string   "photo7_file_name",    limit: 255
-    t.string   "photo7_content_type", limit: 255
+    t.string   "photo7_file_name"
+    t.string   "photo7_content_type"
     t.integer  "photo7_file_size"
     t.datetime "photo7_updated_at"
-    t.string   "photo8_file_name",    limit: 255
-    t.string   "photo8_content_type", limit: 255
+    t.string   "photo8_file_name"
+    t.string   "photo8_content_type"
     t.integer  "photo8_file_size"
     t.datetime "photo8_updated_at"
     t.text     "photo5_base64"
