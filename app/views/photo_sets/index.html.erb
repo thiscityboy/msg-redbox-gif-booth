@@ -1,16 +1,26 @@
-
-
-<div class='text'>
-  <h2>SNAP A GIF!</h2>
-  <p>Create your gif photo here in less than THREE<br>
-	minutes and share with your family and friends.</p>
-  <%= link_to 'Create your own', new_photo_set_url, class: 'btn btn-verizon' %>
+<div class="row">
+	<div class="col-xs-7 col-sm-7 col-md-7">
+		<div class='text'>
+		  <h2>SNAP A GIF!</h2>
+		  <p>Create your gif photo here in less than THREE<br>
+			minutes and share with your family and friends.</p>
+		  <%= link_to 'Create your own', new_photo_set_url, class: 'btn btn-verizon' %>
+		</div>
+	</div>
+	<div class="col-xs-5 col-sm-5 col-md-5">
+		<% @photos.each do |gifs| %>
+			<table class="table">
+			  <tbody>
+			    <tr>
+			      <td><img src="<%= gifs %>" width="100%"></td>
+			      <td><img src="<%= gifs %>" width="100%"></td>
+			    </tr>
+			  </tbody>
+			</table>
+		<% end %>
+	</div>
 </div>
-<div class='home-img'>
-  <%= image_tag 'home-fpo.png' %>
-</div>
-
 
 <script>
-$('.text').addClass('animated bounceInLeft');
+	$('.text').addClass('animated bounceInLeft');
 </script>
