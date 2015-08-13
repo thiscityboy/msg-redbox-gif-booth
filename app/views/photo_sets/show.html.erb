@@ -1,7 +1,6 @@
 <div class='text'>
-  <h2>Congrats</h2>
-  <h1>You're Done</h1>
-  <p>Send this photo to your phone now! From there, you can also share the photo with your friends and family via Facebook and Twitter.</p>
+  <h2>You’re all set!</h2>
+  <p>Your .gif is on the way! You will recieve an<br>SMS link in the next few minutes.</p>
 </div>
 <div class='image'>
   <%= image_tag @photo_set.gif.url, class: 'gif-image' %>
@@ -13,4 +12,9 @@ $(function() {
     window.location = "/";
   }, 10000);
 });
+</script>
+
+
+<script>
+$('.image').addClass('animated bounceInDown');
 </script>

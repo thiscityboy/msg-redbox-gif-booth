@@ -6,6 +6,7 @@ ruby '2.2.2'
 gem "rails", "4.2.1"
 gem 'puma'
 
+
 # Front end
 gem "sass-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
@@ -26,6 +27,10 @@ gem "rmagick"
 # Queueing
 gem "sidekiq"
 gem 'sinatra', '>= 1.3.0', :require => nil # For Sidekiq web
+
+#FUN!
+gem 'giphy'
+gem 'httparty'
 
 group :development, :test do
   gem "better_errors"

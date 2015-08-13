@@ -11,6 +11,11 @@ body.photo_sets.new {
     width: 56.25%;
   }
 
+  #btn-camera {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+
   #video-frame > img {
     border: solid 5px white;
     box-sizing: content-box;
@@ -20,7 +25,7 @@ body.photo_sets.new {
   }
 
   video {
-    border: solid 4px white;
+    border: solid 4px #777;
     box-sizing: content-box;
     border-radius: 4px;
     width: 640px;
@@ -48,7 +53,7 @@ body.photo_sets.new {
     height: 20%;
     float: left;
     margin-left: 21.875%;
-    padding: 0 0 40px 0;
+    padding: 0 0 120px 0;
     bottom: 0;
   }
 
@@ -60,8 +65,9 @@ body.photo_sets.new {
   }
 
   #count-label {
-    color: #d62026;
-    font-family: 'VerizonApexBold', sans-serif;
+    color: white;
+    font-family: "museo-slab",serif;
+    font-weight: 300;
     font-size: 50px;
     padding: 10px;
   }
