@@ -1,11 +1,10 @@
 # msg gemfile
 source 'https://repo.fury.io/svdEKiyaqdZ1xhagHajp/me/'
 source 'https://rubygems.org'
-ruby '2.1.5'
+ruby '2.2.2'
 
 gem "rails", "4.2.1"
 gem 'puma'
-gem 'unicorn'
 
 
 # Front end
