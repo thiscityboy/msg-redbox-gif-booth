@@ -1,14 +1,13 @@
 body.photo_sets.index {
 
   .main {
-    padding: 48px 48px;
+    padding: 0px 0px;
     clear: both;
   }
 
   .text {
     float: left;
     text-align: left;
-    width: 52.6%;
     margin-top: 160px;
     margin-left: 50px;
   }
@@ -23,6 +22,17 @@ body.photo_sets.index {
     width: 514px;
     height: auto;
   }
+
+ .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    padding: 0px;
+    margin: 0px;
+    vertical-align: top;
+    border-top: 0px solid #dddddd;
+  }
+
+ .table {
+   margin: -45px 0 0 0;
+ } 
 
   h1 {
     margin: 0 0 20px 0;
