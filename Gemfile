@@ -5,6 +5,8 @@ ruby '2.2.2'
 
 gem "rails", "4.2.1"
 gem 'puma'
+gem 'unicorn'
+
 
 # Front end
 gem "sass-rails", "~> 4.0.0"
