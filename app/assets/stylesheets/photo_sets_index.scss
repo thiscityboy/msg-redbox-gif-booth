@@ -2,13 +2,14 @@ body.photo_sets.index {
 
   .main {
     padding: 0px 0px;
+    margin: 0 -210px 0 0;
     clear: both;
   }
 
   .text {
     float: left;
     text-align: left;
-    margin-top: 160px;
+    margin-top: 320px;
     margin-left: 50px;
   }
 
@@ -27,6 +28,11 @@ body.photo_sets.index {
     float: left;
     margin:  0 0 0 0;
     padding: 0px;
+  }
+
+  .gif-table {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
   }
 
   h1 {
