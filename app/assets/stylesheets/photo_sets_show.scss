@@ -8,20 +8,17 @@ body.photo_sets.show {
   .text {
     float: left;
     text-align: left;
-    width: 50.6%;
     margin-top: 260px;
   }
 
   .image {
     float: left;
-    text-align: right;
-    width: 40.3%;
+    margin: 100px 100px 0 100px;
   }
 
   .image > img {
     position: fixed;
-    left: 55%;
-    width: 514px;
+    width: 400px;
     height: auto;
   }
 

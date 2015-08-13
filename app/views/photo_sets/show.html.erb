@@ -1,11 +1,18 @@
-<div class='text'>
-  <h2>You’re all set!</h2>
-  <p>Your .gif is on the way! You will recieve an<br>SMS link in the next few minutes.</p>
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class='text'>
+		  <h2>You’re all set!</h2>
+		  <p>Your .gif is on the way! You will recieve an<br>SMS link in the next few minutes.</p>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class='image'>
+		  <%= image_tag @photo_set.gif.url, class: 'gif-image' %>
+		  <%= image_tag @photo_set.frame.content.url, class: 'frame' %>
+		</div>
+	</div>
 </div>
-<div class='image'>
-  <%= image_tag @photo_set.gif.url, class: 'gif-image' %>
-  <%= image_tag @photo_set.frame.content.url, class: 'frame' %>
-</div>
+
 <script>
 $(function() {
   setTimeout(function() {
@@ -16,5 +23,5 @@ $(function() {
 
 
 <script>
-$('.image').addClass('animated bounceInDown');
+	$('.image').addClass('animated bounceInDown');
 </script>
