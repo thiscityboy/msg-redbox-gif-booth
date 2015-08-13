@@ -8,6 +8,7 @@ class PhotoSetsController < ApplicationController
 
   def new
     @photo_set = PhotoSet.new
+    @spinner = PhotoSet.first(1).map { |p| p.gif.url }
   end
 
   def edit

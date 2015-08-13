@@ -16,6 +16,27 @@ body.photo_sets.new {
     animation-iteration-count: infinite;
   }
 
+  .spinner img {
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    border: solid 2px white;
+  }
+
+  .spinner {
+    -webkit-animation: spin 5s infinite;  
+    animation: spin 5s infinite;  
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   #video-frame > img {
     border: solid 5px white;
     box-sizing: content-box;
