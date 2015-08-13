@@ -27,6 +27,10 @@ gem "rmagick"
 gem "sidekiq"
 gem 'sinatra', '>= 1.3.0', :require => nil # For Sidekiq web
 
+#FUN!
+gem 'giphy'
+gem 'httparty'
+
 group :development, :test do
   gem "better_errors"
   gem "rspec-rails"

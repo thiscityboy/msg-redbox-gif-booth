@@ -1,6 +1,10 @@
 class PhotoSetsController < ApplicationController
 
+  require 'httparty'
+
+
   def index
+    @response = HTTParty.get('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC')
   end
 
   def new
