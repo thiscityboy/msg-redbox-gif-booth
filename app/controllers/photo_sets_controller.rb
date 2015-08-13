@@ -3,7 +3,7 @@ class PhotoSetsController < ApplicationController
 
 
   def index
-    @photos = PhotoSet.last(6).map { |p| p.gif.url }
+    @photos = PhotoSet.last(8).map { |p| p.gif.url }
   end
 
   def new
