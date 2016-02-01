@@ -19,9 +19,9 @@
  *= require_self
  */
 body {
-  background-image: url("<%= asset_url 'bg-gradient.png' %>");
+  background-color: #A30A19;
   background-size: 1280px 800px;
-  border-top: 15px solid #268FD4;
+  border-top: 15px solid #FFF;
 }
 
 .spinner  {
@@ -53,11 +53,15 @@ a, a:active, a:hover {
   right: 0px;
 }
 
+.logo {
+  padding: 0 0 10px 10px;
+}
+
 h2 {
-  font-family: "museo-slab",serif;
-  font-weight: 300;
-  font-size: 68px;
-  color: #31a8e6;
+  font-family: 'Abel', sans-serif;
+  font-weight: 400;
+  font-size: 78px;
+  color: #FFF;
   text-transform: uppercase;
   margin: 0;
 }
@@ -72,12 +76,12 @@ p {
 }
 
 .btn-verizon, .btn-verizon:hover {
-  color: #fff;
+  color: #A30A19;
   font-family: "museo-sans-rounded",sans-serif;
   font-weight: 700;
   font-size: 1em;
   text-transform: uppercase;
-  background-color: #2A96DF;
+  background-color: #FFF;
 }
 
 .btn-circle {
@@ -91,3 +95,45 @@ p {
   font-family: "museo-sans-rounded",sans-serif;
   font-size: 21px;
 }
+
+.spot1 { left: 7%; top: 40px; -webkit-animation: move 5s infinite;}
+.spot2 { left: 27%; top: 40px; -webkit-animation: move2 5s infinite;}
+.spotlight {
+  position: absolute;
+  width: 53px;
+  height: 0px;
+  border-top: 500px solid rgba(255,255,255,0.15);
+  border-left: 40px solid transparent;
+  border-bottom: 0px solid #575;
+  border-right: 40px solid transparent;  
+  background-color: transparent;
+  -webkit-transform-origin: 50% 100% 0;
+  z-index: 0;
+  /*-webkit-transition-timing: ease-in-out;*/
+}
+
+ @-webkit-keyframes move {
+  0%  { 
+    -webkit-transform: rotate(30deg);
+  }
+  50% {
+    -webkit-transform: rotate(-30deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+  }
+}
+
+ @-webkit-keyframes move2 {
+  0%  { 
+    -webkit-transform: rotate(-30deg);
+  }
+  50% {
+    -webkit-transform: rotate(30deg);
+  }
+  100% {
+    -webkit-transform: rotate(-30deg);
+  }
+}
+
+

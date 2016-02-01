@@ -3,10 +3,10 @@
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6">
 		<div class='text'>
-		  <h2>SNAP A GIF!</h2>
-		  <p>Create your gif photo here in less than THREE<br>
-			minutes and share with your family and friends.</p>
-		  <%= link_to 'Create your own', new_photo_set_url, class: 'btn btn-verizon' %>
+		  <%= image_tag ("redbox-logo.png"), class: "logo", :width => '30%' %>
+		  <h2>LAUNCH PARTY!</h2>
+		  <p>Congrats peeps on all your hard work!</p>
+		  <%= link_to 'Make a GIF', new_photo_set_url, class: 'btn btn-verizon' %>
 		</div>
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6">
@@ -16,8 +16,11 @@
 			<% end %>
 		</div>
 	</div>	
-</div>	
+</div>
+
+<div class="spotlight spot1"></div>
+<div class="spotlight spot2"></div>	
 <script>
-	$('.text').addClass('magictime tinUpIn');
+	$('.text').addClass('magictime twisterInUp');
 	$('.gif-table').addClass('animated fadeIn');
 </script>

@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20150812163239) do
   create_table "frames", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content_file_name",    limit: 255
-    t.string   "content_content_type", limit: 255
+    t.string   "content_file_name"
+    t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
   end
@@ -85,24 +85,24 @@ ActiveRecord::Schema.define(version: 20150812163239) do
   add_index "photo_sets", ["frame_id"], name: "index_photo_sets_on_frame_id"
 
   create_table "photos", force: :cascade do |t|
-    t.string   "family_name",          limit: 255
-    t.string   "mdn",                  limit: 255
+    t.string   "family_name"
+    t.string   "mdn"
     t.text     "content_base64"
-    t.string   "content_type",         limit: 255
-    t.string   "content_filename",     limit: 255
+    t.string   "content_type"
+    t.string   "content_filename"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content_file_name",    limit: 255
-    t.string   "content_content_type", limit: 255
+    t.string   "content_file_name"
+    t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
-    t.string   "framed_file_name",     limit: 255
-    t.string   "framed_content_type",  limit: 255
+    t.string   "framed_file_name"
+    t.string   "framed_content_type"
     t.integer  "framed_file_size"
     t.datetime "framed_updated_at"
     t.text     "framed_base64"
-    t.string   "framed_filename",      limit: 255
-    t.string   "framed_type",          limit: 255
+    t.string   "framed_filename"
+    t.string   "framed_type"
     t.integer  "stop_id"
   end
 
@@ -110,22 +110,22 @@ ActiveRecord::Schema.define(version: 20150812163239) do
 
   create_table "stops", force: :cascade do |t|
     t.date     "date"
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
