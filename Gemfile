@@ -20,7 +20,7 @@ gem "rails_admin"
 # Backend
 gem "paperclip"
 gem 'aws-sdk', '< 2.0'
-gem "msg_toolbox"
+gem 'msg_toolbox', source: 'https://repo.fury.io/svdEKiyaqdZ1xhagHajp/me/'
 gem "rollbar"
 gem "rmagick"
 
