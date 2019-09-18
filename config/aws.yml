@@ -1,7 +1,0 @@
-development:
-  access_key_id: AKIAJOB2WM4XTR5EYUPA
-  secret_access_key: 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
-
-production:
-  access_key_id: AKIAJOB2WM4XTR5EYUPA
-  secret_access_key: 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
